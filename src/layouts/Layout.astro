@@ -5,6 +5,7 @@ interface Props {
 }
 
 const { title, description = "CarniApp - Tu carnicería virtual con IA y cortes premium en la puerta de tu casa." } = Astro.props;
+import '../styles/global.css';
 ---
 
 <!doctype html>
@@ -17,16 +18,16 @@ const { title, description = "CarniApp - Tu carnicería virtual con IA y cortes 
 		<meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 		<title>{title}</title>
 	</head>
-	<body class="font-sans text-dark antialiased bg-white">
+	<body class="text-dark antialiased bg-white">
 		<slot />
 	</body>
 </html>
 
 <style is:global>
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Urbanist', system-ui, sans-serif;
   }
 </style>

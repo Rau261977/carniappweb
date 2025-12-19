@@ -9,12 +9,12 @@ import Layout from '../layouts/Layout.astro';
       <div class="flex justify-between items-center h-20">
         <div class="flex items-center gap-2">
           <img src="/icon.png" alt="CarniApp Logo" class="h-10 w-10 rounded-lg shadow-sm" />
-          <span class="font-bold text-2xl tracking-tight text-dark">CarniApp</span>
+          <span class="text-2xl tracking-tight text-dark">CarniApp</span>
         </div>
         <div class="hidden md:flex space-x-8">
-          <a href="#features" class="text-gray-600 hover:text-primary font-medium transition-colors">Características</a>
-          <a href="#how-it-works" class="text-gray-600 hover:text-primary font-medium transition-colors">Cómo funciona</a>
-          <a href="#testimonials" class="text-gray-600 hover:text-primary font-medium transition-colors">Opiniones</a>
+          <a href="#features" class="text-gray-600 hover:text-primary font-semibold transition-colors">Características</a>
+          <a href="#how-it-works" class="text-gray-600 hover:text-primary font-semibold transition-colors">Cómo funciona</a>
+          <a href="#testimonials" class="text-gray-600 hover:text-primary font-semibold transition-colors">Opiniones</a>
         </div>
         <a href="#download" class="bg-primary hover:bg-primary-dark text-dark font-bold py-2.5 px-6 rounded-full transition-all transform hover:scale-105 shadow-lg shadow-primary/30">
           Descargar App
@@ -24,7 +24,7 @@ import Layout from '../layouts/Layout.astro';
   </nav>
 
   <!-- Hero Section -->
-  <section class="pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+  <section class="pt-16 lg:pt-24 lg:pb-10 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
         
@@ -32,16 +32,17 @@ import Layout from '../layouts/Layout.astro';
         <div class="text-center lg:text-left z-10">
           <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-100 text-yellow-800 text-sm font-semibold mb-6 animate-fade-in-up">
             <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
-            Nueva IA Carnicero Virtual disponible
+            Motor de marketing y ventas
           </div>
           
           <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-dark mb-6 leading-tight">
-            El corte perfecto <br />
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-500">en tu puerta.</span>
+            El futuro de la <br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-500">carnicería</span>
           </h1>
           
           <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            Descubre la primera app con un <strong>Carnicero Virtual IA</strong> que te recomienda cortes, recetas y puntos de cocción. Calidad premium, directo a tu parrilla.
+            Esperar a que los clientes lleguen es asunto del pasado, con <strong>CarniApp</strong> tus clientes tienen tu carnicería en el celular 
+            y el negocio trabaja más eficientemente con envíos o retiros.
           </p>
           
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" id="download">
@@ -77,8 +78,8 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <!-- Phone Mockup -->
-        <div class="relative z-10 lg:h-[800px] flex items-center justify-center animate-float hidden lg:flex">
-          <div class="relative w-[320px] h-[650px] bg-dark rounded-[3rem] border-8 border-gray-900 shadow-2xl overflow-hidden">
+        <div class="relative z-10 flex items-center justify-center animate-float hidden lg:flex">
+          <div class="relative w-[320px] h-[650px] bg-dark rounded-[3rem] border-8 border-gray-900 shadow-2xl overflow-hidden scale-[0.9]">
              <!-- Notch -->
              <div class="absolute top-0 w-40 h-6 bg-gray-900 left-1/2 transform -translate-x-1/2 rounded-b-2xl z-20"></div>
              
@@ -116,46 +117,114 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Features Section -->
-  <section id="features" class="py-24 bg-gray-50">
+  <section id="features" class="py-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-16">
         <h2 class="text-base text-primary font-bold tracking-wide uppercase mb-2">Características</h2>
-        <p class="text-4xl font-extrabold text-dark mb-4">Más que una carnicería</p>
-        <p class="text-xl text-gray-600">Tecnología y tradición se unen para darte la mejor experiencia de compra.</p>
+        <p class="text-5xl font-extrabold text-dark mb-4">Más que una app de delivery <br> Más que una carnicería</p>
+        <p class="text-2xl text-gray-600">Tecnología y experiencia para darle la mejor experiencia de compra al cliente.</p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
           {
-            title: "Carnicero Virtual IA",
+            title: "+ Mejor aprovechamiento del tiempo",
             desc: "Tu asistente personal. Pregúntale qué cocinar, cómo marinar o el punto perfecto.",
-            icon: "🤖"
+            icon: "/reloj.png"
           },
           {
-            title: "Calidad Premium",
+            title: "Comercio moderno",
             desc: "Cortes seleccionados diariamente. Si no es de primera, no te lo enviamos.",
-            icon: "🥩"
+            icon: "/app.png"
           },
           {
-            title: "Programa de Puntos",
+            title: "Marketing inteligente",
             desc: "Gana CarniPoints con cada compra y canjéalos por descuentos exclusivos.",
-            icon: "⭐"
+            icon: "/intelligence.png"
           },
           {
-            title: "Envíos Flash",
+            title: "Envíos y retiros",
             desc: "Recibe tu pedido en menos de 2 horas o programa la entrega cuando quieras.",
-            icon: "🚀"
+            icon: "/delivery.png"
+          },
+          {
+            title: "+ retencion y recurrencia",
+            desc: "Describe aquí tu nueva funcionalidad increíble para los clientes.",
+            icon: "/retencion.png"
+          },
+          {
+            title: "Práctico y cómodo",
+            desc: "Describe aquí tu nueva funcionalidad increíble para los clientes.",
+            icon: "/practico.png"
+          },
+          {
+            title: "+ rentabilidad",
+            desc: "Describe aquí tu nueva funcionalidad increíble para los clientes.",
+            icon: "/rentabilidad.png"
+          },
+          {
+            title: "menos conflictos",
+            desc: "Describe aquí tu nueva funcionalidad increíble para los clientes.",
+            icon: "/feliz.png"
           }
         ].map(feature => (
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all hover:transform hover:-translate-y-1 group">
-            <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
-              {feature.icon}
+          <div class="bg-white p-8 rounded-2xl shadow-lg shadow-primary/30 border border-gray-100 hover:shadow-xl hover:shadow-primary/30 transition-all hover:transform hover:-translate-y-1 group">
+            <div class={`w-14 h-14 rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform ${feature.icon.endsWith('.png') ? 'bg-transparent mx-auto' : 'bg-yellow-100'}`}>
+              {feature.icon.endsWith('.png') ? (
+                <img src={feature.icon} alt={feature.title} class="w-full h-full object-contain scale-[1.15]" />
+              ) : (
+                feature.icon
+              )}
             </div>
             <h3 class="text-xl font-bold text-dark mb-3">{feature.title}</h3>
             <p class="text-gray-600 leading-relaxed">{feature.desc}</p>
           </div>
         ))}
       </div>
+      
+      <!-- New Section: CarniApp se pone tu camiseta -->
+      <div class="mt-32 grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Text Content -->
+        <div class="order-2 lg:order-1">
+          <h2 class="text-4xl font-extrabold text-dark mb-6 leading-tight">
+            CarniApp se pone <br />
+            <span class="text-primary">tu camiseta</span>
+          </h2>
+          <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+            Personalizamos la experiencia para que tu marca brille. Desde los colores hasta el logo, todo está diseñado para que tus clientes sientan que están comprando directamente en tu carnicería de confianza, pero con la tecnología más avanzada.
+          </p>
+          <ul class="space-y-4">
+            {[
+              "Personalización de colores y logo",
+              "Catálogo autoadministrable",
+              "Soporte técnico dedicado 24/7"
+            ].map(item => (
+              <li class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="text-gray-700 font-medium">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <!-- Phone Slideshow -->
+        <div class="order-1 lg:order-2 flex justify-center">
+          <div class="relative w-[280px] h-[580px] bg-dark rounded-[2.5rem] border-8 border-gray-900 shadow-2xl overflow-hidden">
+             <!-- Notch -->
+             <div class="absolute top-0 w-32 h-5 bg-gray-900 left-1/2 transform -translate-x-1/2 rounded-b-2xl z-20"></div>
+             
+             <!-- Slideshow Container -->
+             <div class="relative w-full h-full bg-gray-100">
+               <img src="/screen1.png" alt="Screen 1" class="absolute inset-0 w-full h-full object-cover animate-slideshow" style="animation-delay: 0s;" />
+               <img src="/screen2.png" alt="Screen 2" class="absolute inset-0 w-full h-full object-cover animate-slideshow" style="animation-delay: 3s;" />
+               <img src="/screen3.png" alt="Screen 3" class="absolute inset-0 w-full h-full object-cover animate-slideshow" style="animation-delay: 6s;" />
+             </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -175,7 +244,7 @@ import Layout from '../layouts/Layout.astro';
         <h4 class="font-bold text-lg mb-4">Legal</h4>
         <ul class="space-y-2 text-gray-400">
           <li><a href="#" class="hover:text-primary transition-colors">Términos y Condiciones</a></li>
-          <li><a href="#" class="hover:text-primary transition-colors">Privacidad</a></li>
+          <li><a href="/privacidad" class="hover:text-primary transition-colors">Privacidad</a></li>
         </ul>
       </div>
       <div>
@@ -207,5 +276,16 @@ import Layout from '../layouts/Layout.astro';
   }
   .animate-pulse-slow {
     animation: pulse-slow 4s ease-in-out infinite;
+  }
+  
+  @keyframes slideshow {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    40% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  .animate-slideshow {
+    animation: slideshow 9s infinite;
   }
 </style>

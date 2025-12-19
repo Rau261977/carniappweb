@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Política de Privacidad - CarniApp">
+  <main class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-dark mb-8">Política de Privacidad</h1>
+        
+        <div class="prose prose-lg text-gray-600 space-y-6">
+          <p class="text-sm text-gray-400">Última actualización: {new Date().toLocaleDateString()}</p>
+
+          <section>
+            <h2 class="text-xl font-bold text-dark mb-3">1. Introducción</h2>
+            <p>
+              Bienvenido a CarniApp. Nos tomamos muy en serio la privacidad de tus datos. Esta política describe cómo recopilamos, usamos y protegemos tu información personal cuando utilizas nuestra aplicación móvil y nuestros servicios.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-dark mb-3">2. Información que recopilamos</h2>
+            <p>Para brindarte un mejor servicio, podemos recopilar la siguiente información:</p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Datos de Identificación:</strong> Nombre, correo electrónico, número de teléfono.</li>
+              <li><strong>Datos de Ubicación:</strong> Tu dirección de entrega para procesar los pedidos.</li>
+              <li><strong>Datos de Dispositivo:</strong> Información sobre tu dispositivo móvil para optimizar la experiencia de usuario.</li>
+              <li><strong>Datos de Pedidos:</strong> Historial de compras y preferencias de productos.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-dark mb-3">3. Uso de la información</h2>
+            <p>Utilizamos tus datos para los siguientes fines:</p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li>Procesar y entregar tus pedidos de manera eficiente.</li>
+              <li>Comunicarnos contigo sobre el estado de tu compra.</li>
+              <li>Mejorar nuestros servicios y personalizar tu experiencia.</li>
+              <li>Enviar promociones y novedades (si has aceptado recibirlas).</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-dark mb-3">4. Protección de datos</h2>
+            <p>
+              Implementamos medidas de seguridad técnicas y organizativas para proteger tus datos contra el acceso no autorizado, la pérdida o la alteración. No vendemos ni compartimos tu información personal con terceros con fines comerciales.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-dark mb-3">5. Eliminación de datos</h2>
+            <p>
+              Tienes derecho a solicitar la eliminación de tu cuenta y todos tus datos personales en cualquier momento. Puedes hacerlo desde la configuración de la aplicación o contactándonos directamente a través de nuestros canales de soporte.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-dark mb-3">6. Contacto</h2>
+            <p>
+              Si tienes preguntas sobre esta política de privacidad, puedes contactarnos en:
+              <br />
+              <a href="mailto:soporte@carniapp.com" class="text-primary font-bold hover:underline">admin@carniapp.com</a>
+            </p>
+          </section>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-gray-100">
+            <a href="/" class="text-primary font-bold hover:text-dark transition-colors flex items-center gap-2">
+                ← Volver al inicio
+            </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

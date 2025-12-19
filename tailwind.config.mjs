@@ -10,7 +10,7 @@ export default {
         dark: '#333333',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Urbanist', 'system-ui', 'sans-serif'],
       }
     },
 	},
