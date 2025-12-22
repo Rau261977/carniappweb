@@ -79,33 +79,20 @@ import Layout from '../layouts/Layout.astro';
 
         <!-- Phone Mockup -->
         <div class="relative z-10 flex items-center justify-center animate-float hidden lg:flex">
-          <div class="relative w-[320px] h-[650px] bg-dark rounded-[3rem] border-8 border-gray-900 shadow-2xl overflow-hidden scale-[0.9]">
-             <!-- Notch -->
-             <div class="absolute top-0 w-40 h-6 bg-gray-900 left-1/2 transform -translate-x-1/2 rounded-b-2xl z-20"></div>
+          <div class="relative w-[320px] h-[670px] bg-dark rounded-2xl border-[3px] border-gray-900 shadow-2xl overflow-hidden scale-[0.85]">
+             <!-- Hole Punch Camera -->
+             <div class="absolute top-2 w-3 h-3 bg-black left-1/2 transform -translate-x-1/2 rounded-full z-20 border border-gray-800"></div>
              
-             <!-- Screen Content Placeholder -->
-             <div class="w-full h-full bg-white flex flex-col">
-                <!-- Header -->
-                <div class="h-24 bg-primary p-6 flex flex-col justify-end">
-                   <div class="text-dark font-bold text-lg">Hola, Carnívoro 👋</div>
-                   <div class="text-dark/80 text-sm">¿Qué cocinamos hoy?</div>
-                </div>
-                <!-- Banner -->
-                <div class="m-4 h-32 rounded-xl bg-orange-100 flex items-center justify-center relative overflow-hidden">
-                   <div class="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-500 opacity-20"></div>
-                   <div class="text-orange-600 font-bold">Ofertas Semanales</div>
-                </div>
-                <!-- Grid -->
-                <div class="grid grid-cols-2 gap-4 px-4">
-                   <div class="h-32 bg-gray-50 rounded-xl p-3 border border-gray-100">
-                      <div class="w-full h-20 bg-gray-200 rounded-lg mb-2"></div>
-                      <div class="h-3 w-3/4 bg-gray-300 rounded"></div>
-                   </div>
-                   <div class="h-32 bg-gray-50 rounded-xl p-3 border border-gray-100">
-                      <div class="w-full h-20 bg-gray-200 rounded-lg mb-2"></div>
-                      <div class="h-3 w-3/4 bg-gray-300 rounded"></div>
-                   </div>
-                </div>
+             <!-- Screen Content: Video -->
+             <div class="w-full h-full bg-black">
+                <video 
+                  src="/demo.mp4" 
+                  class="w-full h-full object-cover" 
+                  autoplay 
+                  loop 
+                  muted 
+                  playsinline
+                ></video>
              </div>
           </div>
           
@@ -186,11 +173,11 @@ import Layout from '../layouts/Layout.astro';
       <div class="mt-32 grid lg:grid-cols-2 gap-12 items-center">
         <!-- Text Content -->
         <div class="order-2 lg:order-1">
-          <h2 class="text-4xl font-extrabold text-dark mb-6 leading-tight">
+          <h2 class="text-6xl font-extrabold text-dark mb-6 leading-tight">
             CarniApp se pone <br />
-            <span class="text-primary">tu camiseta</span>
+            <span class="text-primary text-8xl">tu camiseta</span>
           </h2>
-          <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+          <p class="text-2xl text-gray-600 mb-8 leading-relaxed">
             Personalizamos la experiencia para que tu marca brille. Desde los colores hasta el logo, todo está diseñado para que tus clientes sientan que están comprando directamente en tu carnicería de confianza, pero con la tecnología más avanzada.
           </p>
           <ul class="space-y-4">
@@ -211,9 +198,9 @@ import Layout from '../layouts/Layout.astro';
         
         <!-- Phone Slideshow -->
         <div class="order-1 lg:order-2 flex justify-center">
-          <div class="relative w-[280px] h-[580px] bg-dark rounded-[2.5rem] border-8 border-gray-900 shadow-2xl overflow-hidden">
-             <!-- Notch -->
-             <div class="absolute top-0 w-32 h-5 bg-gray-900 left-1/2 transform -translate-x-1/2 rounded-b-2xl z-20"></div>
+          <div class="relative w-[280px] h-[590px] bg-dark rounded-2xl border-[3px] border-gray-900 shadow-2xl overflow-hidden">
+             <!-- Hole Punch Camera -->
+             <div class="absolute top-2 w-3 h-3 bg-black left-1/2 transform -translate-x-1/2 rounded-full z-20 border border-gray-800"></div>
              
              <!-- Slideshow Container -->
              <div class="relative w-full h-full bg-gray-100">
@@ -256,7 +243,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
     <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-      &copy; {new Date().getFullYear()} CarniApp. Todos los derechos reservados.
+      &copy; {new Date().getFullYear()} CarniApp.
     </div>
   </footer>
 </Layout>
