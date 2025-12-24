@@ -79,7 +79,7 @@ import Layout from '../layouts/Layout.astro';
 
         <!-- Phone Mockup -->
         <div class="relative z-10 flex items-center justify-center animate-float hidden lg:flex">
-          <div class="relative w-[320px] h-[670px] bg-dark rounded-2xl border-[3px] border-gray-900 shadow-2xl overflow-hidden scale-[0.85]">
+          <div class="relative w-[320px] h-[670px] bg-dark rounded-2xl border-[3px] border-gray-900 shadow-2xl shadow-primary/30 overflow-hidden scale-[0.85]">
              <!-- Hole Punch Camera -->
              <div class="absolute top-2 w-3 h-3 bg-black left-1/2 transform -translate-x-1/2 rounded-full z-20 border border-gray-800"></div>
              
@@ -108,51 +108,53 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-16">
         <h2 class="text-base text-primary font-bold tracking-wide uppercase mb-2">Características</h2>
-        <p class="text-5xl font-extrabold text-dark mb-4">Más que una app de delivery <br> Más que una carnicería</p>
-        <p class="text-2xl text-gray-600">Tecnología y experiencia para darle la mejor experiencia de compra al cliente.</p>
+        <p class="text-5xl font-extrabold text-dark mb-4"><img src="/mas.png" alt="Mas" class="w-16 h-16 inline"> que una app de delivery <br> <img src="/mas.png" alt="Mas" class="w-16 h-16 inline"> que una carnicería</p>
+        <p class="text-2xl text-gray-600">Tecnología para darle la mejor experiencia de compra al cliente.</p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {[
           {
-            title: "+ Mejor aprovechamiento del tiempo",
-            desc: "Tu asistente personal. Pregúntale qué cocinar, cómo marinar o el punto perfecto.",
+            title: "Mejor aprovechamiento de los recursos",
+            desc: "Mantener un local comercial abierto, con empleados esperando que los clientes entren es un costo enorme. Con Carniapp los clientes compran on line para recibir o retirar y el canal de comunicación con sus clientes es exclusivo y siempre abierto.",
             icon: "/reloj.png"
           },
           {
             title: "Comercio moderno",
-            desc: "Cortes seleccionados diariamente. Si no es de primera, no te lo enviamos.",
+            desc: "Carniapp impulsa y acelera el crecimiento de tu negocio. Una app dedicada mejora ventas, agiliza pedidos, reduce errores y fideliza clientes con promociones y notificaciones. La tecnología asegura eficiencia, competitividad y una experiencia de compra superior.",
             icon: "/app.png"
           },
           {
             title: "Marketing inteligente",
-            desc: "Gana CarniPoints con cada compra y canjéalos por descuentos exclusivos.",
+            desc: "Las decisiones de marketing se basan en datos y análisis, lo que permite a los comercios personalizar estrategias para atraer y retener más clientes. La aplicación es un servicio para sus clientes.",
             icon: "/intelligence.png"
           },
+          /*
           {
             title: "Envíos y retiros",
             desc: "Recibe tu pedido en menos de 2 horas o programa la entrega cuando quieras.",
             icon: "/delivery.png"
           },
+          */
           {
             title: "+ retencion y recurrencia",
-            desc: "Describe aquí tu nueva funcionalidad increíble para los clientes.",
+            desc: "El 87% de los consumidores habituales de carne compra donde le queda más cómodo y la compra en línea es la que más gusta. Según nuestras encuestas. Es lo que brinda Carniapp a sus clientes, comprar más comodamente.",
             icon: "/retencion.png"
           },
-          {
+          /*{
             title: "Práctico y cómodo",
             desc: "Describe aquí tu nueva funcionalidad increíble para los clientes.",
             icon: "/practico.png"
-          },
+          },*/
           {
             title: "+ rentabilidad",
-            desc: "Describe aquí tu nueva funcionalidad increíble para los clientes.",
+            desc: "Carniapp digitaliza su negocio, puede acotar horarios de apertura, reducción de tiempos muertos del personal, + ventas + eficiencia + ganancias.",
             icon: "/rentabilidad.png"
           },
           {
-            title: "menos conflictos",
-            desc: "Describe aquí tu nueva funcionalidad increíble para los clientes.",
-            icon: "/feliz.png"
+            title: "Envíos y retiros",
+            desc: "Carniapp puede enviar los pedidos a domicilio o a un punto de retiro. Con tracking del envío y optimizacion de rutas.",
+            icon: "/delivery.png"
           }
         ].map(feature => (
           <div class="bg-white p-8 rounded-2xl shadow-lg shadow-primary/30 border border-gray-100 hover:shadow-xl hover:shadow-primary/30 transition-all hover:transform hover:-translate-y-1 group">
@@ -198,7 +200,7 @@ import Layout from '../layouts/Layout.astro';
         
         <!-- Phone Slideshow -->
         <div class="order-1 lg:order-2 flex justify-center">
-          <div class="relative w-[280px] h-[590px] bg-dark rounded-2xl border-[3px] border-gray-900 shadow-2xl overflow-hidden">
+          <div class="relative w-[280px] h-[590px] bg-dark rounded-2xl border-[3px] border-gray-900 shadow-2xl shadow-primary/30 overflow-hidden">
              <!-- Hole Punch Camera -->
              <div class="absolute top-2 w-3 h-3 bg-black left-1/2 transform -translate-x-1/2 rounded-full z-20 border border-gray-800"></div>
              
@@ -220,8 +222,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8">
       <div class="col-span-2">
         <div class="flex items-center gap-2 mb-4">
-           <span class="text-3xl">🥩</span>
-           <span class="font-bold text-2xl">CarniApp</span>
+           <!--  <span class="text-3xl">🥩</span> --><span class="font-bold text-2xl">CarniApp</span>
         </div>
         <p class="text-gray-400 max-w-xs mb-6">
           La revolución de la carne. Calidad, tecnología y pasión por el asado en una sola app.
@@ -235,7 +236,7 @@ import Layout from '../layouts/Layout.astro';
         </ul>
       </div>
       <div>
-        <h4 class="font-bold text-lg mb-4">Síguenos</h4>
+        <h4 class="font-bold text-lg mb-4">Seguinos</h4>
         <div class="flex space-x-4">
            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-dark transition-all font-bold">IG</a>
            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary hover:text-dark transition-all font-bold">FB</a>
