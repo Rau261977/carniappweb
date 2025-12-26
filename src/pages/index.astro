@@ -115,7 +115,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {[
           {
-            title: "Mejor aprovechamiento de los recursos",
+            title: "Optimización del uso de recursos",
             desc: "Mantener un local comercial abierto, con empleados esperando que los clientes entren es un costo enorme. Con Carniapp los clientes compran on line para recibir o retirar y el canal de comunicación con sus clientes es exclusivo y siempre abierto.",
             icon: "/reloj.png"
           },
@@ -126,7 +126,7 @@ import Layout from '../layouts/Layout.astro';
           },
           {
             title: "Marketing inteligente",
-            desc: "Las decisiones de marketing se basan en datos y análisis, lo que permite a los comercios personalizar estrategias para atraer y retener más clientes. La aplicación es un servicio para sus clientes.",
+            desc: "Las decisiones de marketing se basan en datos y análisis, lo que permite a los comercios personalizar estrategias para atraer y retener más clientes.\nLa aplicación es un servicio para sus clientes.",
             icon: "/intelligence.png"
           },
           /*
@@ -138,7 +138,7 @@ import Layout from '../layouts/Layout.astro';
           */
           {
             title: "+ retencion y recurrencia",
-            desc: "El 87% de los consumidores habituales de carne compra donde le queda más cómodo y la compra en línea es la que más gusta. Según nuestras encuestas. Es lo que brinda Carniapp a sus clientes, comprar más comodamente.",
+            desc: "El 87% de los consumidores habituales de carne compra donde le queda más cómodo y la compra en línea es la que más gusta. Según nuestras encuestas.\nEs lo que brinda Carniapp a sus clientes, comprar más comodamente.",
             icon: "/retencion.png"
           },
           /*{
@@ -147,8 +147,8 @@ import Layout from '../layouts/Layout.astro';
             icon: "/practico.png"
           },*/
           {
-            title: "+ rentabilidad",
-            desc: "Carniapp digitaliza su negocio, puede acotar horarios de apertura, reducción de tiempos muertos del personal, + ventas + eficiencia + ganancias.",
+            title: "+ rentabilidad + alcance",
+            desc: "Carniapp digitaliza su negocio, puede acotar horarios de apertura, reducción de tiempos muertos del personal, + ventas + eficiencia + ganancias. \nLlegue a gente más allá de los límites barriales",
             icon: "/rentabilidad.png"
           },
           {
@@ -166,7 +166,7 @@ import Layout from '../layouts/Layout.astro';
               )}
             </div>
             <h3 class="text-xl font-bold text-dark mb-3">{feature.title}</h3>
-            <p class="text-gray-600 leading-relaxed">{feature.desc}</p>
+            <p class="text-gray-600 leading-relaxed whitespace-pre-line">{feature.desc}</p>
           </div>
         ))}
       </div>
@@ -180,7 +180,7 @@ import Layout from '../layouts/Layout.astro';
             <span class="text-primary text-8xl">tu camiseta</span>
           </h2>
           <p class="text-2xl text-gray-600 mb-8 leading-relaxed">
-            Personalizamos la experiencia para que tu marca brille. Desde los colores hasta el logo, todo está diseñado para que tus clientes sientan que están comprando directamente en tu carnicería de confianza, pero con la tecnología más avanzada.
+            Personalizamos la experiencia para que tu marca brille. Desde los colores hasta el logo, todo está diseñado para que tus clientes sientan que están comprando directamente en su carnicería de confianza, con la tecnología más avanzada.
           </p>
           <ul class="space-y-4">
             {[
@@ -214,6 +214,53 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
+      <!-- Información importante -->
+        <div class="flex mt-8 justify-center p-5">
+          <img src="/concepto.jpg" alt="Información importante" class="max-w-full h-auto rounded-2xl" />
+        </div>
+
+    </div>
+  </section>
+
+  <!-- Secondary Features Section -->
+  <section class="py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-base text-primary font-bold tracking-wide uppercase mb-2">Cómo trabajamos</h2>
+        <p class="text-6xl font-extrabold text-dark mb-4"><span class="text-primary">Carniapp</span> se adapta a vos</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[
+          {
+            title: "100% gestionado",
+            desc: "Nosotros nos encargamos de todo el marketing de tu marca, cargas el stock disponible y nos encargamos de vender, como si fuesemos uno más en el mostrador con tu marca, la app 100% dedicada a vos.",
+            icon: "/personal.png"
+          },
+          {
+            title: "Servicio de software",
+            desc: "Te alquilamos el softaware 100% personalizado. Vos y tu equipo se encargan de todo o tu agencia de marketing de confianza.",
+            icon: "/software.png"
+          },
+          {
+            title: "Carnicero virtual totalmente personalizable",
+            desc: "Las opciones y nombres de los cortes de carne son 100% personalizados para los usos y costumbres del lugar donde trabajes.",
+            icon: "/lenguas.png"
+          }
+        ].map(feature => (
+          <div class="bg-white p-8 rounded-2xl shadow-lg shadow-primary/30 border border-gray-100 hover:shadow-xl hover:shadow-primary/30 transition-all hover:transform hover:-translate-y-1 group">
+            <div class={`w-14 h-14 rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform ${feature.icon.endsWith('.png') ? 'bg-transparent mx-auto' : 'bg-yellow-100 mx-auto'}`}>
+              {feature.icon.endsWith('.png') ? (
+                <img src={feature.icon} alt={feature.title} class="w-full h-full object-contain scale-[1.15]" />
+              ) : (
+                feature.icon
+              )}
+            </div>
+            <h3 class="text-xl font-bold text-dark mb-3">{feature.title}</h3>
+            <p class="text-gray-600 leading-relaxed whitespace-pre-line">{feature.desc}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
