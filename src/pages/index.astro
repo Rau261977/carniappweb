@@ -182,9 +182,7 @@ import Layout from '../layouts/Layout.astro';
               "Soporte técnico dedicado"
             ].map(item => (
               <li class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-yellow-300 flex items-center justify-center text-green-600">
-                  <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                </div>
+                <img src="/accept.png" alt="Plus" class="w-8 h-8 object-contain" />
                 <span class="text-gray-500 font-bold text-xl">{item}</span>
               </li>
             ))}
@@ -237,7 +235,7 @@ import Layout from '../layouts/Layout.astro';
           },
           {
             title: "Carnicero virtual totalmente personalizable",
-            desc: "Las opciones y nombres de los cortes de carne son 100% personalizados para los usos y costumbres del lugar donde trabajes.",
+            desc: "Las opciones y nombres de los cortes de carne son 100% adaptables para los usos y costumbres del lugar donde trabajes.",
             icon: "/lenguas.png"
           }
         ].map(feature => (
