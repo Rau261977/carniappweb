@@ -46,23 +46,13 @@ import Layout from '../layouts/Layout.astro';
           </p>
           
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" id="download">
-            <button class="flex items-center justify-center gap-3 bg-dark text-white px-8 py-4 rounded-xl hover:bg-gray-900 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 w-full sm:w-auto">
-              {/* Apple Icon */}
-              <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.3414C17.5134 11.6601 20.6698 9.77196 20.8252 9.68233C19.102 7.15935 16.4278 6.78635 15.655 6.72658C13.5678 6.50529 11.5542 7.96541 10.4907 7.96541C9.42721 7.96541 7.82479 6.76644 6.0792 6.78835C3.81979 6.81623 1.74838 8.10682 0.598696 10.0964C-1.76159 14.1866 1.62128 20.1558 3.90543 23.4549C5.01859 25.0645 6.31557 26.8373 8.04603 26.7715C9.69677 26.7038 10.3204 25.717 12.3157 25.717C14.2882 25.717 14.8692 26.7715 16.6394 26.7496C18.4336 26.7038 19.5677 25.1084 20.6628 23.5008C21.9168 21.6669 22.4281 19.8946 22.455 19.805C22.4082 19.7821 17.5519 17.9268 17.523 15.3414ZM11.8315 4.60623C12.721 3.52735 13.3158 2.03157 13.1534 0.535805C11.8594 0.588636 10.2974 1.40026 9.38742 2.45585C8.57099 3.39088 7.85406 4.90928 8.04603 6.37877C9.48908 6.49137 10.9413 5.68474 11.8315 4.60623Z" transform="translate(0 -1) scale(0.8)"/></svg>
-              <div class="text-left">
-                <div class="text-xs uppercase font-medium text-gray-400">Consíguelo en el</div>
-                <div class="text-lg font-bold">App Store</div>
-              </div>
-            </button>
+            <a href="#" class="transition-transform hover:scale-105 hover:opacity-90">
+              <img src="/apple.png" alt="App Store" class="h-16 w-auto" />
+            </a>
             
-            <button class="flex items-center justify-center gap-3 bg-dark text-white px-8 py-4 rounded-xl hover:bg-gray-900 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 w-full sm:w-auto">
-              {/* Google Play Icon */}
-              <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a2.49 2.49 0 01-1.258-3.08l1.41-8.084-1.428-8.158c-.14-.793.109-1.61.677-2.05zM15.42 12l5.772 3.237c1.028.577 1.028 2.023 0 2.6l-2.094-1.173L15.42 12zm0 0l3.678-5.336L21.192 7.8c1.028.577 1.028 2.023 0 2.6L15.42 12zM3.609 1.814L15.42 12 3.61 22.186"/></svg>
-              <div class="text-left">
-                <div class="text-xs uppercase font-medium text-gray-400">Disponible en</div>
-                <div class="text-lg font-bold">Google Play</div>
-              </div>
-            </button>
+            <a href="#" class="transition-transform hover:scale-105 hover:opacity-90">
+              <img src="/playstore.png" alt="Google Play" class="h-16 w-auto" />
+            </a>
           </div>
           
           <div class="mt-8 flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-500">
@@ -73,7 +63,7 @@ import Layout from '../layouts/Layout.astro';
                 </div>
               ))}
             </div>
-            <p>+5,000 carnívoros felices</p>
+            <p>millones de carnívoros felices</p>
           </div>
         </div>
 
@@ -109,7 +99,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="text-center max-w-3xl mx-auto mb-16">
         <h2 class="text-base text-primary font-bold tracking-wide uppercase mb-2">Características</h2>
         <p class="text-5xl font-extrabold text-dark mb-4"><img src="/mas.png" alt="Mas" class="w-16 h-16 inline"> que una app de delivery <br> <img src="/mas.png" alt="Mas" class="w-16 h-16 inline"> que una carnicería</p>
-        <p class="text-2xl text-gray-600">Tecnología para darle la mejor experiencia de compra al cliente.</p>
+        <p class="text-2xl text-gray-600">Tecnología para darle la mejor experiencia de compra al cliente</p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -184,15 +174,15 @@ import Layout from '../layouts/Layout.astro';
           </p>
           <ul class="space-y-4">
             {[
-              "Personalización de colores y logo",
+              "Tu marca, tus colores, tu logo, tu personalización",
               "Catálogo autoadministrable",
-              "Soporte técnico dedicado 24/7"
+              "Soporte técnico dedicado"
             ].map(item => (
               <li class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <div class="w-8 h-8 rounded-full bg-yellow-300 flex items-center justify-center text-green-600">
+                  <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <span class="text-gray-700 font-medium">{item}</span>
+                <span class="text-gray-500 font-bold text-xl">{item}</span>
               </li>
             ))}
           </ul>
