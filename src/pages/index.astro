@@ -76,13 +76,16 @@ import Layout from '../layouts/Layout.astro';
              <!-- Screen Content: Video -->
              <div class="w-full h-full bg-black">
                 <video 
-                  src="https://res.cloudinary.com/dkxj30sue/video/upload/v1766711365/demo_we8irq.mp4" 
                   class="w-full h-full object-cover" 
                   autoplay 
                   loop 
                   muted 
                   playsinline
-                ></video>
+                >
+                  <source src="https://res.cloudinary.com/dkxj30sue/video/upload/v1766711365/demo_we8irq.mp4" type="video/mp4" />
+                  <source src="/demo.mp4" type="video/mp4" />
+                  <track kind="captions" src="/captions.vtt" srclang="es" label="Español" default />
+                </video>
              </div>
           </div>
           
@@ -206,7 +209,7 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- Información importante -->
         <div class="flex mt-8 justify-center p-5">
-          <img src="/concepto.jpg" alt="Información importante" class="max-w-full h-auto rounded-2xl" />
+          <img src="https://res.cloudinary.com/dkxj30sue/image/upload/v1766714023/concepto_fn4a6c.webp" alt="Información importante" class="max-w-full h-auto rounded-2xl" />
         </div>
 
     </div>
