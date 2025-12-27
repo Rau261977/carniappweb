@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import masImage from '../../assets/mas.png';
+import relojImage from '../../assets/reloj.png';
+import appImage from '../../assets/app.png';
+import intelligenceImage from '../../assets/intelligence.png';
+import retencionImage from '../../assets/retencion.png';
+import rentabilidadImage from '../../assets/rentabilidad.png';
+import deliveryImage from '../../assets/delivery.png';
+
+const features = [
+  {
+    title: "Optimización de los recursos",
+    desc: "Mantener un local comercial abierto, con empleados esperando que los clientes entren es un costo enorme. Con Carniapp los clientes compran on line para recibir o retirar y el canal de comunicación con sus clientes es exclusivo y siempre abierto.",
+    icon: relojImage
+  },
+  {
+    title: "Comercio moderno",
+    desc: "Carniapp impulsa y acelera el crecimiento de tu negocio. Una app dedicada mejora ventas, agiliza pedidos, reduce errores y fideliza clientes con promociones y notificaciones. La tecnología asegura eficiencia, competitividad y una experiencia de compra superior.",
+    icon: appImage
+  },
+  {
+    title: "Marketing inteligente",
+    desc: "Las decisiones de marketing se basan en datos y análisis, lo que permite a los comercios personalizar estrategias para atraer y retener más clientes.\nLa aplicación es un servicio para sus clientes.",
+    icon: intelligenceImage
+  },
+  {
+    title: "+ retención \n+ recurrencia",
+    desc: "El 87% de los consumidores habituales de carne compra donde le queda más cómodo y la compra en línea es la que más gusta. Según nuestras encuestas.\nEs lo que brinda Carniapp a sus clientes, comprar más comodamente.",
+    icon: retencionImage
+  },
+  {
+    title: "+ rentabilidad \n+ alcance",
+    desc: "Carniapp digitaliza su negocio, puede acotar horarios de apertura, reducción de tiempos muertos del personal, + ventas + eficiencia + ganancias. \nLlegue a gente más allá de los límites barriales",
+    icon: rentabilidadImage
+  },
+  {
+    title: "Envíos y retiros",
+    desc: "Carniapp puede enviar los pedidos a domicilio o a un punto de retiro. Con tracking del envío y optimizacion de rutas.",
+    icon: deliveryImage
+  }
+];
+---
+
+<section id="features" class="py-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-base text-black font-bold tracking-wide uppercase mb-2">Características</h2>
+      <p class="text-5xl font-extrabold text-dark mb-4"><Image src={masImage} alt="Mas" class="w-16 h-16 inline" /> que una app de delivery <br> <Image src={masImage} alt="Mas" class="w-16 h-16 inline" /> que una carnicería</p>
+      <p class="text-2xl text-gray-600">Tecnología para darle la mejor experiencia de compra al cliente</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map(feature => (
+        <div class="bg-white p-8 rounded-2xl shadow-lg shadow-primary/30 border border-gray-100 hover:shadow-xl hover:shadow-primary/30 transition-all hover:transform hover:-translate-y-1 group">
+          <div class="flex items-center gap-4 mb-3">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center text-3xl group-hover:scale-110 transition-transform bg-transparent">
+                <Image src={feature.icon} alt={feature.title} class="w-full h-full object-contain scale-[1.15]" />
+              </div>
+            <div class="w-3/4">
+              <h3 class="text-2xl font-bold text-dark whitespace-pre-line">{feature.title}</h3>
+            </div>
+          </div>
+          <p class="text-gray-600 leading-relaxed whitespace-pre-line">{feature.desc}</p>
+        </div>
+      ))}
+    </div>
+    
+  <!-- Información importante -->
+  <div class="flex mt-8 justify-center p-5">
+    <img src="https://res.cloudinary.com/dkxj30sue/image/upload/v1766714023/concepto_fn4a6c.webp" alt="Información importante" class="max-w-full h-auto rounded-3xl border-2 border-black shadow-lg" />
+  </div>
+
+  </div>
+</section>

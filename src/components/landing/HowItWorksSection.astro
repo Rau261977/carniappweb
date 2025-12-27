@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import personalImage from '../../assets/personal.png';
+import softwareImage from '../../assets/software.png';
+import lenguasImage from '../../assets/lenguas.png';
+
+const features = [
+  {
+    title: "100% gestionado",
+    desc: "Nosotros nos encargamos de todo el marketing de tu marca y ventas a través de la app. Cargas el stock disponible y nos encargamos de vender, como si fuesemos uno más en el mostrador con tu marca, la app 100% dedicada a vos.",
+    icon: personalImage
+  },
+  {
+    title: "Servicio de software",
+    desc: "Te alquilamos el softaware 100% personalizado. Vos y tu equipo se encargan de todo o tu agencia de marketing de confianza.",
+    icon: softwareImage
+  },
+  {
+    title: "Carnicero virtual totalmente personalizable",
+    desc: "Las opciones y nombres de los cortes de carne son 100% adaptables para los usos y costumbres del lugar donde trabajes.",
+    icon: lenguasImage
+  }
+];
+---
+
+  <section id="how-it-works" class="py-8 pb-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-base text-black font-bold tracking-wide uppercase mb-2">Cómo trabajamos</h2>
+        <p class="text-6xl font-extrabold text-dark mb-4"><span class="text-primary">Carniapp</span> se adapta a vos</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {features.map(feature => (
+          <div class="bg-white p-8 rounded-2xl shadow-lg shadow-primary/30 border border-gray-100 hover:shadow-xl hover:shadow-primary/30 transition-all hover:transform hover:-translate-y-1 group">
+            <div class="flex items-center gap-4 mb-3">
+              <div class="w-1/4 flex justify-center">
+                <div class="w-14 h-14 rounded-xl flex items-center justify-center text-3xl group-hover:scale-110 transition-transform bg-transparent">
+                  <Image src={feature.icon} alt={feature.title} class="w-full h-full object-contain scale-[1.15]" />
+                </div>
+              </div>
+              <div class="w-3/4">
+                <h3 class="text-2xl font-bold text-dark whitespace-pre-line">{feature.title}</h3>
+              </div>
+            </div>
+            <p class="text-gray-600 leading-relaxed whitespace-pre-line">{feature.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
