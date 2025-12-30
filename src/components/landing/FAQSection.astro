@@ -1,0 +1,63 @@
+---
+const faqs = [
+  {
+    question: "¿Cómo funciona el servicio?",
+    answer: "Descargá la app, elegí tus productos favoritos, seleccioná el método de entrega (envío o retiro) y pagá de forma segura. ¡Así de simple!"
+  },
+  {
+    question: "¿Cuáles son los métodos de pago?",
+    answer: "Aceptamos efectivo, tarjetas de crédito/débito y pagos digitales a través de la app para tu mayor comodidad."
+  },
+  {
+    question: "¿Hacen envíos a domicilio?",
+    answer: "Sí, realizamos envíos a domicilio en toda la zona de cobertura. Podés verificar si llegamos a tu dirección desde la app."
+  },
+  {
+    question: "¿Puedo programar mi pedido?",
+    answer: "¡Sí! Podés elegir el horario que más te convenga para recibir o retirar tu pedido."
+  },
+  {
+    question: "¿Tienen local físico?",
+    answer: "Sí, podés optar por retirar tu pedido personalmente en nuestro local y conocer nuestros productos de primera calidad."
+  }
+];
+---
+
+<section id="faq" class="pb-24">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-base text-black font-bold tracking-wide uppercase mb-2">Dudas</h2>
+      <p class="text-5xl font-extrabold text-black mb-4">Preguntas Frecuentes</p>
+      <p class="text-xl text-gray-600">Todo lo que necesitás saber sobre nuestro servicio</p>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq) => (
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-md">
+          <details class="group w-full">
+            <summary class="flex justify-between items-center p-6 cursor-pointer list-none w-full text-left">
+              <span class="text-lg font-bold text-dark group-open:text-primary transition-colors duration-300 pr-8">{faq.question}</span>
+              <span class="transition-transform duration-300 group-open:rotate-180 flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-50 pt-4">
+              {faq.answer}
+            </div>
+          </details>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  details > summary {
+    list-style: none;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
