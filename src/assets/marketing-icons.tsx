@@ -252,7 +252,6 @@ const ImpactIcon = forwardRef<IconHandle, IconProps>(
                     animate: { 
                         scale: [1, 1.2, 1],
                         filter: ["drop-shadow(0px 0px 0px rgba(255,202,0,0))", "drop-shadow(0px 0px 8px rgba(255,202,0,0.5))", "drop-shadow(0px 0px 0px rgba(255,202,0,0))"],
-                        stroke: ["currentColor", "#ffca00", "currentColor"], // Flash yellow
                         transition: { duration: 0.4 } 
                     }
                 }}
