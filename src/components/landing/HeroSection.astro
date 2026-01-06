@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import appleImage from '../../assets/apple.png';
 import playstoreImage from '../../assets/playstore.png';
 ---
-<section class="pt-24 lg:pt-18 overflow-hidden">
+<section class="pt-24 lg:pt-14 overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-8 relative">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
       
@@ -20,18 +20,29 @@ import playstoreImage from '../../assets/playstore.png';
         </h1>
         
         <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-          Esperar a que los clientes lleguen es asunto del pasado, con <strong>CarniApp</strong> tus clientes tienen tu carnicería en el celular 
-          y el negocio trabaja más eficientemente con envíos o retiros.
+          Transforme cualquier carnicería en una empresa moderna, eficiente y digital, con una app propia y un sistema de fidelización que aumenta las ventas y la retención del cliente.
         </p>
         
         <div class="flex flex-row gap-4 justify-center lg:justify-start" id="download">
-          <a href="#" class="transition-transform hover:scale-105 hover:opacity-90">
-            <Image src={appleImage} alt="App Store" class="h-12 lg:h-16 w-auto" />
-          </a>
+          <div class="relative group">
+            <button class="transition-transform hover:scale-105 hover:opacity-90 focus:outline-none" aria-label="Descargar en App Store">
+              <Image src={appleImage} alt="App Store" class="h-12 lg:h-16 w-auto" loading="eager" />
+            </button>
+            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block group-focus-within:block px-3 py-1 bg-gray-900 text-white text-xs font-medium rounded-lg shadow-lg whitespace-nowrap opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 pointer-events-none">
+              Próximamente
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
           
-          <a href="#" class="transition-transform hover:scale-105 hover:opacity-90">
-            <Image src={playstoreImage} alt="Google Play" class="h-12 lg:h-16 w-auto" />
-          </a>
+          <div class="relative group">
+            <button class="transition-transform hover:scale-105 hover:opacity-90 focus:outline-none" aria-label="Descargar en Google Play">
+              <Image src={playstoreImage} alt="Google Play" class="h-12 lg:h-16 w-auto" loading="eager" />
+            </button>
+             <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block group-focus-within:block px-3 py-1 bg-gray-900 text-white text-xs font-medium rounded-lg shadow-lg whitespace-nowrap opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 pointer-events-none">
+              Próximamente
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
         </div>
         
         <div class="mt-8 flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-500">
