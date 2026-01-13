@@ -38,7 +38,11 @@ export default function ChatWidget() {
 
     try {
       // Use env var for prod, fallback to localhost for dev
-      const apiUrl = import.meta.env.PUBLIC_CHATBOT_API_URL || 'http://localhost:3000';
+      let apiUrl = import.meta.env.PUBLIC_CHATBOT_API_URL || 'http://localhost:3000';
+      // Remove trailing slash if present to avoid //api/chat
+      if (apiUrl.endsWith('/')) {
+        apiUrl = apiUrl.slice(0, -1);
+      }
       
       const res = await fetch(`${apiUrl}/api/chat`, {
         method: 'POST',
