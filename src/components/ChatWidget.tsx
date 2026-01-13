@@ -81,7 +81,7 @@ export default function ChatWidget() {
                             className={`
                                 max-w-[85%] rounded-2xl px-4 py-2 text-sm
                                 ${msg.role === 'user' 
-                                    ? 'bg-yellow-500 text-black rounded-tr-none font-medium' 
+                                    ? 'bg-[#01b5f7] text-white rounded-tr-none font-medium' 
                                     : 'bg-gray-100 text-gray-800 rounded-tl-none'}
                             `}
                         >
@@ -106,13 +106,13 @@ export default function ChatWidget() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Escribe tu consulta..."
-                    className="flex-1 bg-gray-50 border-none rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-yellow-500 outline-none text-black placeholder-gray-400"
+                    className="flex-1 bg-gray-50 border-none rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-[#01b5f7] outline-none text-black placeholder-gray-400"
                     autoFocus
                 />
                 <button 
                     type="submit" 
                     disabled={isLoading || !input.trim()}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-black p-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    className="bg-[#01b5f7] hover:bg-[#000CFF] text-white p-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                     <Send size={18} />
                 </button>
@@ -122,7 +122,7 @@ export default function ChatWidget() {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="pointer-events-auto bg-yellow-500 hover:bg-yellow-600 text-black p-4 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center justify-center border-4 border-white"
+        className="pointer-events-auto bg-[#01b5f7] hover:bg-[#000CFF] text-white p-4 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center justify-center border-4 border-white"
       >
          {isOpen ? <X size={26} /> : <MessageCircle size={26} />}
       </button>
