@@ -4,7 +4,8 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "CarniApp - Tu carnicería virtual con IA y cortes premium en la puerta de tu casa." } = Astro.props;
+const { title, description = "CarniApp - El Sistema Operativo para Carnicerías Modernas. Aumenta tus ventas y fideliza clientes con tu propia App Inteligente." } = Astro.props;
+import ChatWidget from '../components/ChatWidget';
 import '../styles/global.css';
 ---
 
@@ -27,6 +28,7 @@ import '../styles/global.css';
 	</head>
 	<body class="text-dark antialiased bg-white">
 		<slot />
+    <ChatWidget client:load />
 	</body>
 </html>
 

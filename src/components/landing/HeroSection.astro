@@ -14,46 +14,31 @@ import playstoreImage from '../../assets/playstore.png';
           Motor de marketing y ventas
         </div>
         
-        <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-black mb-6 leading-tight">
+        <h1 class="text-5xl lg:text-6xl font-extrabold tracking-tight text-black mb-6 leading-tight">
           El futuro de la <br />
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-500 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">carnicería</span>
+          <span class="text-transparent tracking-wider lg:text-8xl bg-clip-text bg-gradient-to-r from-primary to-orange-500 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">carnicería</span>
         </h1>
         
         <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0">
           Transformamos cualquier carnicería en una empresa moderna, eficiente y digital, con una app propia y un sistema de fidelización que aumenta las ventas, la productividad, la eficiencia y la retención del cliente.
         </p>
         
-        <div class="flex flex-row gap-4 justify-center lg:justify-start" id="download">
-          <div class="relative group">
-            <button class="transition-transform hover:scale-105 hover:opacity-90 focus:outline-none" aria-label="Descargar en App Store">
-              <Image src={appleImage} alt="App Store" class="h-12 lg:h-16 w-auto" loading="eager" />
-            </button>
-            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block group-focus-within:block px-3 py-1 bg-gray-900 text-white text-xs font-medium rounded-lg shadow-lg whitespace-nowrap opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 pointer-events-none">
-              Próximamente
-              <div class="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
-            </div>
-          </div>
-          
-          <div class="relative group">
-            <button class="transition-transform hover:scale-105 hover:opacity-90 focus:outline-none" aria-label="Descargar en Google Play">
-              <Image src={playstoreImage} alt="Google Play" class="h-12 lg:h-16 w-auto" loading="eager" />
-            </button>
-             <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block group-focus-within:block px-3 py-1 bg-gray-900 text-white text-xs font-medium rounded-lg shadow-lg whitespace-nowrap opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 pointer-events-none">
-              Próximamente
-              <div class="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
-            </div>
-          </div>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" id="action-buttons">
+          <a href="https://wa.me/5491130804640?text=Hola,%20me%20interesa%20una%20demo%20de%20CarniApp" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-red-600/30 flex items-center justify-center gap-2 transform hover:-translate-y-1">
+            <span>📅</span> Agendar Demo 15'
+          </a>
+          <button onclick="document.querySelector('video').scrollIntoView({behavior: 'smooth', block: 'center'})" class="px-8 py-4 bg-white border-2 border-gray-200 hover:border-red-500/30 text-gray-700 hover:text-red-600 font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+            <span>▶</span> Ver Tecnología
+          </button>
         </div>
         
-        <div class="mt-8 flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-500">
+        <div class="mt-8 flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-600">
           <div class="flex -space-x-2">
-            {[1,2,3,4].map(i => (
-              <div class={`w-8 h-8 rounded-full border-2 border-white bg-gray-200 flex items-center justify-center overflow-hidden`}>
-                 <span class="text-xs">👤</span>
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center overflow-hidden shadow-sm text-lg">
+                 🥩
               </div>
-            ))}
           </div>
-          <p>millones de carnívoros felices</p>
+          <p class="font-medium">Software diseñado por <strong>Carniceros</strong>, para <strong>Carniceros</strong>.</p>
         </div>
       </div>
 
