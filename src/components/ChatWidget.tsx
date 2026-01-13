@@ -24,6 +24,9 @@ export default function ChatWidget() {
     scrollToBottom();
   }, [messages, isOpen]);
 
+  // Simple session ID for demo (in prod uses UUID)
+  const [sessionId] = useState(() => 'web-' + Math.random().toString(36).substring(2, 9));
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -38,7 +41,10 @@ export default function ChatWidget() {
       const res = await fetch('http://localhost:3000/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userMsg }),
+        body: JSON.stringify({ 
+            message: userMsg,
+            sessionId: sessionId
+        }),
       });
 
       if (!res.ok) throw new Error(res.statusText);
