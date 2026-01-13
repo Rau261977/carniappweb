@@ -37,8 +37,10 @@ export default function ChatWidget() {
     setIsLoading(true);
 
     try {
-      // Calling the mchatbot server directly
-      const res = await fetch('http://localhost:3000/api/chat', {
+      // Use env var for prod, fallback to localhost for dev
+      const apiUrl = import.meta.env.PUBLIC_CHATBOT_API_URL || 'http://localhost:3000';
+      
+      const res = await fetch(`${apiUrl}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
