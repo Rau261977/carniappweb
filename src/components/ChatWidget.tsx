@@ -80,7 +80,7 @@ export default function ChatWidget() {
                     <h3 className="font-semibold text-gray-900">Rogelio 🤖</h3>
                     <p className="text-xs text-gray-500">Asistente Virtual</p>
                 </div>
-                <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-gray-600">
+                <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-gray-600" aria-label="Cerrar chat">
                     <X size={20} />
                 </button>
             </div>
@@ -125,6 +125,7 @@ export default function ChatWidget() {
                     type="submit" 
                     disabled={isLoading || !input.trim()}
                     className="bg-[#01b5f7] hover:bg-[#000CFF] text-white p-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    aria-label="Enviar mensaje"
                 >
                     <Send size={18} />
                 </button>
@@ -135,6 +136,7 @@ export default function ChatWidget() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="pointer-events-auto bg-[#01b5f7] hover:bg-[#000CFF] text-white p-4 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center justify-center border-4 border-white"
+        aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
       >
          {isOpen ? <X size={26} /> : <MessageCircle size={26} />}
       </button>
