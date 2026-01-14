@@ -10,7 +10,7 @@ interface Message {
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', content: '¡Hola! Soy el asistente virtual de CarniApp. ¿En qué puedo ayudarte hoy?' }
+    { role: 'bot', content: '¡Hola! Soy **Rogelio**, el asistente virtual de CarniApp. ¿En qué puedo ayudarte hoy?' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -77,7 +77,7 @@ export default function ChatWidget() {
             {/* Header */}
             <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50 rounded-t-2xl">
                 <div>
-                    <h3 className="font-semibold text-gray-900">CarniBot 🥩</h3>
+                    <h3 className="font-semibold text-gray-900">Rogelio 🤖</h3>
                     <p className="text-xs text-gray-500">Asistente Virtual</p>
                 </div>
                 <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-gray-600">
