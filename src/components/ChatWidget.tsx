@@ -12,6 +12,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([
     { role: 'bot', content: '¡Hola! Soy **Rogelio**, el asistente virtual de CarniApp. ¿En qué puedo ayudarte hoy?' }
   ]);
+  const [unreadCount, setUnreadCount] = useState(0);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -21,28 +22,72 @@ export default function ChatWidget() {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    if (isOpen) {
+        setUnreadCount(0);
+        scrollToBottom();
+    }
   }, [messages, isOpen]);
 
-  // Simple session ID for demo (in prod uses UUID)
-  const [sessionId] = useState(() => 'web-' + Math.random().toString(36).substring(2, 9));
+  // Session ID persistence
+  const [sessionId] = useState(() => {
+    if (typeof window !== 'undefined') {
+        const stored = localStorage.getItem('chat_session_id');
+        if (stored) return stored;
+        const newId = 'web-' + Math.random().toString(36).substring(2, 9);
+        localStorage.setItem('chat_session_id', newId);
+        return newId;
+    }
+    return 'web-' + Math.random().toString(36).substring(2, 9);
+  });
+
+  // Fetch history function
+  const fetchHistory = async () => {
+      try {
+        let apiUrl = import.meta.env.PUBLIC_CHATBOT_API_URL || 'http://localhost:3000';
+        if (apiUrl.endsWith('/')) apiUrl = apiUrl.slice(0, -1);
+
+        const res = await fetch(`${apiUrl}/api/chat/history?sessionId=${sessionId}`);
+        if (res.ok) {
+            const data = await res.json();
+            if (data.messages && Array.isArray(data.messages)) {
+                if (data.messages.length > 0) {
+                     // Check if new messages arrived while closed
+                     if (!isOpen && messages.length > 0 && data.messages.length > messages.length) {
+                         const diff = data.messages.length - messages.length;
+                         setUnreadCount(prev => prev + diff);
+                     }
+                     // Only update if messages actually changed to prevent auto-scroll on polling
+                     if (JSON.stringify(data.messages) !== JSON.stringify(messages)) {
+                        setMessages(data.messages);
+                     }
+                }
+            }
+        }
+      } catch (e) {
+          console.error("Polling error", e);
+      }
+  };
+
+  // Initial load and Polling
+  useEffect(() => {
+      fetchHistory(); // Immediate
+      const interval = setInterval(fetchHistory, 3000); // Every 3s
+      return () => clearInterval(interval);
+  }, [isOpen, sessionId, messages.length]); 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
     const userMsg = input.trim();
+    // Optimistic update
     setMessages(prev => [...prev, { role: 'user', content: userMsg }]);
     setInput('');
     setIsLoading(true);
 
     try {
-      // Use env var for prod, fallback to localhost for dev
       let apiUrl = import.meta.env.PUBLIC_CHATBOT_API_URL || 'http://localhost:3000';
-      // Remove trailing slash if present to avoid //api/chat
-      if (apiUrl.endsWith('/')) {
-        apiUrl = apiUrl.slice(0, -1);
-      }
+      if (apiUrl.endsWith('/')) apiUrl = apiUrl.slice(0, -1);
       
       const res = await fetch(`${apiUrl}/api/chat`, {
         method: 'POST',
@@ -57,11 +102,13 @@ export default function ChatWidget() {
 
       const data = await res.json();
       setMessages(prev => [...prev, { role: 'bot', content: data.response }]);
+      
     } catch (error) {
       console.error('Chat Error:', error);
-      setMessages(prev => [...prev, { role: 'bot', content: 'Lo siento, hubo un error de conexión con el servidor. Asegúrate de que mchatbot esté corriendo.' }]);
+      setMessages(prev => [...prev, { role: 'bot', content: 'Lo siento, hubo un error de conexión.' }]);
     } finally {
       setIsLoading(false);
+      fetchHistory(); 
     }
   };
 
@@ -133,13 +180,20 @@ export default function ChatWidget() {
         </div>
 
       {/* Toggle Button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="pointer-events-auto bg-[#01b5f7] hover:bg-[#000CFF] text-white p-4 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center justify-center border-4 border-white"
-        aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
-      >
-         {isOpen ? <X size={26} /> : <MessageCircle size={26} />}
-      </button>
+      <div className="relative pointer-events-auto">
+          {unreadCount > 0 && !isOpen && (
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full border-2 border-white animate-bounce shadow-sm z-10">
+                  {unreadCount}
+              </span>
+          )}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="bg-[#01b5f7] hover:bg-[#000CFF] text-white p-4 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center justify-center border-4 border-white"
+            aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
+          >
+             {isOpen ? <X size={26} /> : <MessageCircle size={26} />}
+          </button>
+      </div>
     </div>
   );
 }
