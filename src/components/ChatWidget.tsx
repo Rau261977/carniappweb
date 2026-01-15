@@ -16,6 +16,7 @@ export default function ChatWidget() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -24,6 +25,8 @@ export default function ChatWidget() {
   useEffect(() => {
     if (isOpen) {
         setUnreadCount(0);
+        // Persist that we've seen all messages
+        localStorage.setItem('chat_last_seen_count', messages.length.toString());
         scrollToBottom();
     }
   }, [messages, isOpen]);
@@ -40,6 +43,13 @@ export default function ChatWidget() {
     return 'web-' + Math.random().toString(36).substring(2, 9);
   });
 
+  // Get last seen count from localStorage
+  const getLastSeenCount = (): number => {
+    if (typeof window === 'undefined') return 0;
+    const stored = localStorage.getItem('chat_last_seen_count');
+    return stored ? parseInt(stored, 10) : 0;
+  };
+
   // Fetch history function
   const fetchHistory = async () => {
       try {
@@ -51,11 +61,23 @@ export default function ChatWidget() {
             const data = await res.json();
             if (data.messages && Array.isArray(data.messages)) {
                 if (data.messages.length > 0) {
-                     // Check if new messages arrived while closed
-                     if (!isOpen && messages.length > 0 && data.messages.length > messages.length) {
-                         const diff = data.messages.length - messages.length;
-                         setUnreadCount(prev => prev + diff);
+                     const lastSeenCount = getLastSeenCount();
+                     
+                     // Only count new messages if widget is closed AND this is not the initial load
+                     if (!isOpen && !isInitialLoad && data.messages.length > lastSeenCount) {
+                         const diff = data.messages.length - lastSeenCount;
+                         setUnreadCount(diff);
                      }
+                     
+                     // On initial load, just sync the last seen count without showing badge
+                     if (isInitialLoad) {
+                         // If we have stored count, compare. If new messages since last visit, show badge
+                         if (lastSeenCount > 0 && data.messages.length > lastSeenCount) {
+                             setUnreadCount(data.messages.length - lastSeenCount);
+                         }
+                         setIsInitialLoad(false);
+                     }
+                     
                      // Only update if messages actually changed to prevent auto-scroll on polling
                      if (JSON.stringify(data.messages) !== JSON.stringify(messages)) {
                         setMessages(data.messages);
@@ -73,7 +95,7 @@ export default function ChatWidget() {
       fetchHistory(); // Immediate
       const interval = setInterval(fetchHistory, 3000); // Every 3s
       return () => clearInterval(interval);
-  }, [isOpen, sessionId, messages.length]); 
+  }, [isOpen, sessionId]); 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,6 +124,10 @@ export default function ChatWidget() {
 
       const data = await res.json();
       setMessages(prev => [...prev, { role: 'bot', content: data.response }]);
+      
+      // Update last seen count after sending message
+      const newCount = messages.length + 2; // +1 for user msg, +1 for bot response
+      localStorage.setItem('chat_last_seen_count', newCount.toString());
       
     } catch (error) {
       console.error('Chat Error:', error);
