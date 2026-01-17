@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Loader2 } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2, Calendar } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import { BookingForm } from './BookingForm';
 
 interface Message {
   role: 'user' | 'bot';
@@ -17,6 +18,7 @@ export default function ChatWidget() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [showBookingForm, setShowBookingForm] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -102,7 +104,27 @@ export default function ChatWidget() {
     if (!input.trim() || isLoading) return;
 
     const userMsg = input.trim();
-    // Optimistic update
+    const msgLower = userMsg.toLowerCase();
+    
+    // Check if user wants to book an appointment
+    const bookingKeywords = ['agendar', 'reservar', 'cita', 'demo', 'reunion', 'llamada', 'turno'];
+    const wantsToBook = bookingKeywords.some(keyword => msgLower.includes(keyword));
+    
+    if (wantsToBook) {
+      // Add user message
+      setMessages(prev => [...prev, { role: 'user', content: userMsg }]);
+      setInput('');
+      
+      // Add bot response and open booking form
+      setMessages(prev => [...prev, { 
+        role: 'bot', 
+        content: '¡Perfecto! 📅 Completá el formulario de abajo para agendar tu demo con el equipo de CarniApp.' 
+      }]);
+      setShowBookingForm(true);
+      return;
+    }
+    
+    // Regular chat flow
     setMessages(prev => [...prev, { role: 'user', content: userMsg }]);
     setInput('');
     setIsLoading(true);
@@ -126,7 +148,7 @@ export default function ChatWidget() {
       setMessages(prev => [...prev, { role: 'bot', content: data.response }]);
       
       // Update last seen count after sending message
-      const newCount = messages.length + 2; // +1 for user msg, +1 for bot response
+      const newCount = messages.length + 2;
       localStorage.setItem('chat_last_seen_count', newCount.toString());
       
     } catch (error) {
@@ -181,11 +203,34 @@ export default function ChatWidget() {
                         </div>
                     </div>
                 )}
+                
+                {/* Booking Form */}
+                {showBookingForm && (
+                    <BookingForm
+                        apiUrl={import.meta.env.PUBLIC_CHATBOT_API_URL || 'http://localhost:3000'}
+                        sessionId={sessionId}
+                        onComplete={(msg) => {
+                            setShowBookingForm(false);
+                            setMessages(prev => [...prev, { role: 'bot', content: msg }]);
+                        }}
+                        onCancel={() => setShowBookingForm(false)}
+                    />
+                )}
+                
                 <div ref={messagesEndRef} />
             </div>
 
             {/* Input */}
             <form onSubmit={handleSubmit} className="p-3 border-t border-gray-100 bg-white rounded-b-2xl flex gap-2">
+                <button 
+                    type="button"
+                    onClick={() => setShowBookingForm(!showBookingForm)}
+                    className={`p-2 rounded-xl transition-colors ${showBookingForm ? 'bg-[#01b5f7] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                    aria-label="Agendar cita"
+                    title="Agendar Demo"
+                >
+                    <Calendar size={18} />
+                </button>
                 <input
                     type="text"
                     value={input}
