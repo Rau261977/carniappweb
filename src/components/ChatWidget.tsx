@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Loader2, Calendar } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { BookingForm } from './BookingForm';
 
@@ -222,15 +222,6 @@ export default function ChatWidget() {
 
             {/* Input */}
             <form onSubmit={handleSubmit} className="p-3 border-t border-gray-100 bg-white rounded-b-2xl flex gap-2">
-                <button 
-                    type="button"
-                    onClick={() => setShowBookingForm(!showBookingForm)}
-                    className={`p-2 rounded-xl transition-colors ${showBookingForm ? 'bg-[#01b5f7] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
-                    aria-label="Agendar cita"
-                    title="Agendar Demo"
-                >
-                    <Calendar size={18} />
-                </button>
                 <input
                     type="text"
                     value={input}
