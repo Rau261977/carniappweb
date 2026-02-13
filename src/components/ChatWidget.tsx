@@ -225,20 +225,26 @@ export default function ChatWidget() {
                 <input
                     type="text"
                     value={input}
-                    onChange={(e) => setInput(e.target.value)}
+                    onChange={(e) => setInput(e.target.value.slice(0, 200))}
                     placeholder="Escribe tu consulta..."
+                    maxLength={200}
                     className="flex-1 bg-gray-50 border-none rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-[#01b5f7] outline-none text-black placeholder-gray-400"
                     autoFocus
                 />
                 <button 
                     type="submit" 
-                    disabled={isLoading || !input.trim()}
+                    disabled={isLoading || !input.trim() || input.length > 200}
                     className="bg-[#01b5f7] hover:bg-[#000CFF] text-white p-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     aria-label="Enviar mensaje"
                 >
                     <Send size={18} />
                 </button>
             </form>
+            {input.length > 180 && (
+                <div className="px-3 pb-1 text-[10px] text-right text-gray-400">
+                    {input.length}/200
+                </div>
+            )}
         </div>
 
       {/* Toggle Button */}
