@@ -161,7 +161,7 @@ export default function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-[9999] flex flex-col items-end pointer-events-none font-sans">
+    <div className="fixed bottom-20 md:bottom-4 right-4 z-[9999] flex flex-col items-end pointer-events-none font-sans">
         {/* Chat Window */}
         <div 
             className={`
@@ -256,7 +256,7 @@ export default function ChatWidget() {
           )}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="bg-[#01b5f7] hover:bg-[#000CFF] text-white p-4 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center justify-center border-4 border-white"
+            className="bg-[#01b5f7] hover:bg-[#000CFF] text-white p-3 md:p-4 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center justify-center border-4 border-white"
             aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
           >
              {isOpen ? <X size={26} /> : <MessageCircle size={26} />}
