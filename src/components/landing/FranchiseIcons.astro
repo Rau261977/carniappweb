@@ -1,0 +1,114 @@
+---
+interface Props {
+  icon: 'phone' | 'brand' | 'growth' | 'network';
+  size?: number;
+  className?: string;
+}
+
+const { icon, size = 28, className = "" } = Astro.props;
+---
+
+<div class:list={["franchise-icon-container", className]} data-icon={icon}>
+  {icon === 'phone' && (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" class="phone-body" />
+      <line x1="12" y1="18" x2="12.01" y2="18" class="phone-button" />
+    </svg>
+  )}
+
+  {icon === 'network' && (
+     <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3" class="node-center" />
+        <circle cx="6" cy="6" r="2" class="node-sat sat-1" />
+        <circle cx="18" cy="6" r="2" class="node-sat sat-2" />
+        <circle cx="6" cy="18" r="2" class="node-sat sat-3" />
+        <circle cx="18" cy="18" r="2" class="node-sat sat-4" />
+        <path d="M10 10L7.5 7.5" class="conn conn-1" />
+        <path d="M14 10L16.5 7.5" class="conn conn-2" />
+        <path d="M10 14L7.5 16.5" class="conn conn-3" />
+        <path d="M14 14L16.5 16.5" class="conn conn-4" />
+     </svg>
+  )}
+
+  {icon === 'brand' && (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" class="shield" />
+      <path d="M9 12l2 2 4-4" class="check" />
+    </svg>
+  )}
+
+  {icon === 'growth' && (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2v20" class="axis-v" />
+      <path d="M2 12h20" class="axis-h" />
+      <path d="M12 2l-4 4" class="arrow a1" />
+      <path d="M12 2l4 4" class="arrow a2" />
+      <path d="M22 12l-4 -4" class="arrow a3" />
+      <path d="M22 12l-4 4" class="arrow a4" />
+      <path d="M12 22l-4 -4" class="arrow a5" />
+      <path d="M12 22l4 -4" class="arrow a6" />
+      <path d="M2 12l4 -4" class="arrow a7" />
+      <path d="M2 12l4 4" class="arrow a8" />
+    </svg>
+  )}
+</div>
+
+<style>
+  .franchise-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Base Animation Classes (triggered by IntersectionObserver) */
+  .animate .phone-body { animation: pulse 2s infinite; }
+  .animate .phone-button { animation: blink 2s infinite; }
+
+  .animate .node-center { animation: pulse 2s infinite; }
+  .animate .node-sat { animation: fadeIn 0.5s forwards; opacity: 0; }
+  .animate .sat-1 { animation-delay: 0.1s; }
+  .animate .sat-2 { animation-delay: 0.2s; }
+  .animate .sat-3 { animation-delay: 0.3s; }
+  .animate .sat-4 { animation-delay: 0.4s; }
+  .animate .conn { stroke-dasharray: 10; stroke-dashoffset: 10; animation: draw 0.5s forwards; }
+  .animate .conn-1 { animation-delay: 0.1s; }
+  .animate .conn-2 { animation-delay: 0.2s; }
+  .animate .conn-3 { animation-delay: 0.3s; }
+  .animate .conn-4 { animation-delay: 0.4s; }
+
+  .animate .shield { animation: pulse 3s infinite; }
+  .animate .check { stroke-dasharray: 20; stroke-dashoffset: 20; animation: draw 0.5s forwards; animation-delay: 0.3s; }
+
+  .animate .arrow { stroke-dasharray: 10; stroke-dashoffset: 10; animation: draw 0.5s forwards; }
+  .animate .a1, .animate .a2 { animation-delay: 0.1s; }
+  .animate .a3, .animate .a4 { animation-delay: 0.2s; }
+  .animate .a5, .animate .a6 { animation-delay: 0.3s; }
+  .animate .a7, .animate .a8 { animation-delay: 0.4s; }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.franchise-icon-container').forEach(el => observer.observe(el));
+</script>

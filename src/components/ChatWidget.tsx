@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Loader2 } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { BookingForm } from './BookingForm';
 
@@ -11,14 +11,14 @@ interface Message {
 
 function ChatTooltip({ isOpen }: { isOpen: boolean }) {
     const phrases = ["Recibo consultas", "respondo preguntas ¿?", "agendo citas"];
-    const [currentPhraseIndex, setCurrentPhraseIndex] = React.useState(0);
-    const [displayedText, setDisplayedText] = React.useState("");
-    const [isTyping, setIsTyping] = React.useState(true);
+    const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+    const [displayedText, setDisplayedText] = useState("");
+    const [isTyping, setIsTyping] = useState(true);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (isOpen) return;
 
-        let timeout: NodeJS.Timeout;
+        let timeout: any;
 
         if (isTyping) {
             if (displayedText.length < phrases[currentPhraseIndex].length) {
@@ -32,12 +32,12 @@ function ChatTooltip({ isOpen }: { isOpen: boolean }) {
                 }, 1000);
             }
         } else {
-            // Fase de borrado o cambio instantáneo
-            // El usuario pidió que 1 segundo después escriba la siguiente, 
-            // así que reseteamos y pasamos a la siguiente.
-            setDisplayedText("");
-            setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
-            setIsTyping(true);
+            // Fase de espera antes de cambiar a la siguiente frase
+            timeout = setTimeout(() => {
+                setDisplayedText("");
+                setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+                setIsTyping(true);
+            }, 100); 
         }
 
         return () => clearTimeout(timeout);
@@ -106,7 +106,8 @@ export default function ChatWidget() {
   const getLastSeenCount = (): number => {
     if (typeof window === 'undefined') return 0;
     const stored = localStorage.getItem('chat_last_seen_count');
-    return stored ? parseInt(stored, 10) : 0;
+    const count = stored ? parseInt(stored, 10) : 0;
+    return isNaN(count) ? 0 : count;
   };
 
   // Fetch history function
