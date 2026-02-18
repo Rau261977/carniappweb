@@ -6,6 +6,9 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   integrations: [react(), tailwind()],
   site: 'https://carniapp.com',
+  build: {
+    inlineStylesheets: 'always',
+  },
   vite: {
     build: {
       // Mejorar tree-shaking y code splitting
