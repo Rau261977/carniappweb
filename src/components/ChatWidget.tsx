@@ -1,11 +1,68 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Loader2 } from 'lucide-react';
+import { motion } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 import { BookingForm } from './BookingForm';
 
 interface Message {
   role: 'user' | 'bot';
   content: string;
+}
+
+function ChatTooltip({ isOpen }: { isOpen: boolean }) {
+    const phrases = ["Recibo consultas", "respondo preguntas ¿?", "agendo citas"];
+    const [currentPhraseIndex, setCurrentPhraseIndex] = React.useState(0);
+    const [displayedText, setDisplayedText] = React.useState("");
+    const [isTyping, setIsTyping] = React.useState(true);
+
+    React.useEffect(() => {
+        if (isOpen) return;
+
+        let timeout: NodeJS.Timeout;
+
+        if (isTyping) {
+            if (displayedText.length < phrases[currentPhraseIndex].length) {
+                timeout = setTimeout(() => {
+                    setDisplayedText(phrases[currentPhraseIndex].slice(0, displayedText.length + 1));
+                }, 60); // Velocidad de escritura
+            } else {
+                // Terminado de escribir, esperar 1 segundo
+                timeout = setTimeout(() => {
+                    setIsTyping(false);
+                }, 1000);
+            }
+        } else {
+            // Fase de borrado o cambio instantáneo
+            // El usuario pidió que 1 segundo después escriba la siguiente, 
+            // así que reseteamos y pasamos a la siguiente.
+            setDisplayedText("");
+            setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+            setIsTyping(true);
+        }
+
+        return () => clearTimeout(timeout);
+    }, [displayedText, isTyping, currentPhraseIndex, isOpen]);
+
+    if (isOpen) return null;
+
+    return (
+        <motion.div 
+            className="mb-2 mr-2"
+            initial={{ y: 0 }}
+            animate={{ y: [0, -20, 0, -10, 0, -4, 0] }}
+            transition={{ 
+                duration: 2.5,
+                times: [0, 0.16, 0.32, 0.48, 0.64, 0.82, 1],
+                ease: ["easeOut", "easeIn", "easeOut", "easeIn", "easeOut", "easeIn"]
+            }}
+        >
+            <div className="bg-white text-gray-800 text-[13px] font-bold py-2.5 px-6 rounded-2xl shadow-xl border border-gray-100 relative min-w-[140px] text-center">
+                {displayedText}
+                <span className="animate-pulse border-r-2 border-gray-400 ml-0.5" />
+                <div className="absolute -bottom-1 right-6 w-2.5 h-2.5 bg-white border-r border-b border-gray-100 rotate-45"></div>
+            </div>
+        </motion.div>
+    );
 }
 
 export default function ChatWidget() {
@@ -255,14 +312,7 @@ export default function ChatWidget() {
       {/* Toggle Button Container */}
       <div className="relative pointer-events-auto flex flex-col items-end">
           {/* Tooltip / Speech Bubble */}
-          {!isOpen && (
-              <div className="mb-2 mr-2 animate-bounce-3">
-                  <div className="bg-white text-gray-800 text-[13px] font-bold py-2.5 px-6 rounded-2xl shadow-xl border border-gray-100 relative whitespace-nowrap">
-                      Recibo consultas
-                      <div className="absolute -bottom-1 right-6 w-2.5 h-2.5 bg-white border-r border-b border-gray-100 rotate-45"></div>
-                  </div>
-              </div>
-          )}
+          <ChatTooltip isOpen={isOpen} />
 
           <div className="relative">
               {unreadCount > 0 && !isOpen && (
