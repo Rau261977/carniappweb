@@ -152,9 +152,20 @@ export default function ChatWidget() {
 
   // Initial load and Polling
   useEffect(() => {
-      fetchHistory(); // Immediate
-      const interval = setInterval(fetchHistory, 3000); // Every 3s
-      return () => clearInterval(interval);
+    // Break critical request chain by delaying initial fetch
+    const initialDelay = setTimeout(() => {
+        // Only fetch if we've been here before or widget is open
+        const hasHistory = localStorage.getItem('chat_last_seen_count');
+        if (hasHistory || isOpen) {
+            fetchHistory();
+        }
+    }, 2000);
+
+    const interval = setInterval(fetchHistory, 3000); // Every 3s
+    return () => {
+        clearTimeout(initialDelay);
+        clearInterval(interval);
+    };
   }, [isOpen, sessionId]); 
 
   const handleSubmit = async (e: React.FormEvent) => {
