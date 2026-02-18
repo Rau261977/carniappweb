@@ -7,3 +7,9 @@
     font-family: 'Urbanist', system-ui, sans-serif;
   }
 }
+
+@layer utilities {
+  .animate-bounce-3 {
+    animation: bounce 1s ease-in-out 3;
+  }
+}

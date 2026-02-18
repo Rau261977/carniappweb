@@ -171,11 +171,16 @@ export default function ChatWidget() {
         >
             {/* Header */}
             <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50 rounded-t-2xl">
-                <div>
-                    <h3 className="font-semibold text-gray-900">Rogelio 🤖</h3>
-                    <p className="text-xs text-gray-500">Asistente Virtual</p>
+                <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-[#01b5f7] rounded-full flex items-center justify-center text-xl shadow-sm border-2 border-white">
+                        🤖
+                    </div>
+                    <div>
+                        <h3 className="font-semibold text-gray-900 leading-tight">Rogelio</h3>
+                        <p className="text-xs text-gray-500">Asistente Virtual</p>
+                    </div>
                 </div>
-                <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-gray-600" aria-label="Cerrar chat">
+                <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-gray-600 transition-colors" aria-label="Cerrar chat">
                     <X size={20} />
                 </button>
             </div>
@@ -247,20 +252,38 @@ export default function ChatWidget() {
             )}
         </div>
 
-      {/* Toggle Button */}
-      <div className="relative pointer-events-auto">
-          {unreadCount > 0 && !isOpen && (
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full border-2 border-white animate-bounce shadow-sm z-10">
-                  {unreadCount}
-              </span>
+      {/* Toggle Button Container */}
+      <div className="relative pointer-events-auto flex flex-col items-end">
+          {/* Tooltip / Speech Bubble */}
+          {!isOpen && (
+              <div className="mb-2 mr-2 animate-bounce-3">
+                  <div className="bg-white text-gray-800 text-[13px] font-bold py-2.5 px-6 rounded-2xl shadow-xl border border-gray-100 relative whitespace-nowrap">
+                      Recibo consultas
+                      <div className="absolute -bottom-1 right-6 w-2.5 h-2.5 bg-white border-r border-b border-gray-100 rotate-45"></div>
+                  </div>
+              </div>
           )}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="bg-[#01b5f7] hover:bg-[#000CFF] text-white p-3 md:p-4 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center justify-center border-4 border-white"
-            aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
-          >
-             {isOpen ? <X size={26} /> : <MessageCircle size={26} />}
-          </button>
+
+          <div className="relative">
+              {unreadCount > 0 && !isOpen && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full border-2 border-white animate-bounce shadow-sm z-10">
+                      {unreadCount}
+                  </span>
+              )}
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="bg-[#01b5f7] hover:bg-[#000CFF] text-white p-0 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center justify-center border-4 border-white overflow-hidden w-14 h-14 md:w-16 md:h-16"
+                aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
+              >
+                 {isOpen ? (
+                     <X size={26} />
+                 ) : (
+                     <div className="w-full h-full flex items-center justify-center text-3xl transition-all duration-300">
+                         🤖
+                     </div>
+                 )}
+              </button>
+          </div>
       </div>
     </div>
   );
