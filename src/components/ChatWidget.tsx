@@ -116,7 +116,7 @@ export default function ChatWidget() {
         let apiUrl = import.meta.env.PUBLIC_CHATBOT_API_URL || 'https://api-production-531f.up.railway.app';
         if (apiUrl.endsWith('/')) apiUrl = apiUrl.slice(0, -1);
 
-        const res = await fetch(`${apiUrl}/conversations/chat/history?sessionId=${sessionId}`);
+        const res = await fetch(`${apiUrl}/api/conversations/chat/history?sessionId=${sessionId}`);
         if (res.ok) {
             const data = await res.json();
             if (data.messages && Array.isArray(data.messages)) {
@@ -202,7 +202,7 @@ export default function ChatWidget() {
       let apiUrl = import.meta.env.PUBLIC_CHATBOT_API_URL || 'https://api-production-531f.up.railway.app';
       if (apiUrl.endsWith('/')) apiUrl = apiUrl.slice(0, -1);
       
-      const res = await fetch(`${apiUrl}/conversations/chat`, {
+      const res = await fetch(`${apiUrl}/api/conversations/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
