@@ -1,0 +1,27 @@
+---
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CarniApp",
+  "operatingSystem": "Android, iOS",
+  "applicationCategory": "BusinessApplication, FoodApplication",
+  "description": "El Sistema Operativo para Carnicerías Modernas. Aumenta tus ventas y fideliza clientes con tu propia App Inteligente.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "ARS"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "ratingCount": "120"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CarniApp",
+    "logo": "https://carniapp.com/icon.png"
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
