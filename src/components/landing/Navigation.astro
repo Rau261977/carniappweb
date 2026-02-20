@@ -24,6 +24,7 @@ import whatsappImage from '../../assets/whatsapp_1383269.png';
           rel="noopener noreferrer"
           class="transition-transform transform hover:scale-110 active:scale-95"
           aria-label="Contactar por WhatsApp"
+          onclick="gtag('event', 'contact', { 'event_category': 'engagement', 'event_label': 'whatsapp_nav' });"
         >
           <Image src={whatsappImage} alt="WhatsApp" class="w-10 h-10 md:w-10 md:h-10 object-contain" loading="eager" width={80} height={80} />
         </a>
@@ -31,6 +32,7 @@ import whatsappImage from '../../assets/whatsapp_1383269.png';
           href="https://github.com/Rau261977/carniapp-lanzamiento/releases/download/v1.0.5/carniapp.apk" 
           class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-dark font-bold py-3 px-6 rounded-full shadow-lg transition-all transform hover:scale-105"
           aria-label="Descargar App"
+          onclick="gtag('event', 'download', { 'event_category': 'engagement', 'event_label': 'android_apk_nav' });"
         >
           <!-- Icono de Android -->
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg">
