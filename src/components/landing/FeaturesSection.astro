@@ -16,13 +16,13 @@ const features = [
     icon: relojImage
   },
   {
-    title: "Comercio moderno",
-    desc: "Carniapp impulsa y acelera el crecimiento de tu negocio. Una app dedicada mejora ventas, agiliza pedidos, reduce errores y fideliza clientes con promociones y notificaciones. La tecnología asegura eficiencia, competitividad y una experiencia de compra superior.",
+    title: "Asistente Virtual Especializado",
+    desc: "Atención al cliente 24/7 con nuestro asistente IA. 'Rogelio' interactúa de forma inteligente, resuelve dudas frecuentes en tiempo real, sugiere productos basados en preferencias y guía a tus usuarios en una experiencia de compra asistida y sin fricciones.",
     icon: appImage
   },
   {
-    title: "Marketing & IA",
-    desc: "Tu propio 'Carnicero Virtual'. Nuestra IA analiza los hábitos de consumo de tus clientes y envía ofertas personalizadas automáticamente para aumentar el ticket promedio, tal como lo haría tu mejor vendedor.",
+    title: "Marketing Generativo, Predictivo y Preventivo",
+    desc: "Impulsá tus ventas con un motor de IA de última generación. Nuestra tecnología Generativa crea campañas dinámicas, el análisis Predictivo anticipa la demanda de tus clientes, y el enfoque Preventivo detecta automáticamente patrones de abandono para reactivar clientes antes de que dejen de comprar.",
     icon: intelligenceImage
   },
   {
@@ -36,8 +36,8 @@ const features = [
     icon: rentabilidadImage
   },
   {
-    title: "Envíos y retiros",
-    desc: "Carniapp puede enviar los pedidos a domicilio o a un punto de retiro. Con tracking del envío y optimizacion de rutas.",
+    title: "Logística y Entregas Flexibles",
+    desc: "CarniApp ofrece una solución logística integral y adaptable. Integrá servicios externos de delivery o utilizá nuestra propia infraestructura de App de Delivery dedicada. Optimizá rutas, realizá seguimiento en tiempo real y gestioná múltiples puntos de retiro de forma eficiente.",
     icon: deliveryImage
   }
 ];
@@ -103,8 +103,8 @@ const features = [
               <div class="w-14 h-14 rounded-xl flex items-center justify-center text-3xl group-hover:scale-110 transition-transform bg-transparent">
                 <Image src={feature.icon} alt={feature.title} class="w-full h-full object-contain scale-[1.15]" width={80} height={80} />
               </div>
-            <div class="w-3/4">
-              <h3 class="text-2xl font-bold text-dark whitespace-pre-line">{feature.title}</h3>
+            <div class="flex-1">
+              <h3 class="text-2xl font-bold text-dark whitespace-pre-line leading-tight">{feature.title}</h3>
             </div>
           </div>
           <p class="text-gray-600 leading-relaxed whitespace-pre-line">{feature.desc}</p>
