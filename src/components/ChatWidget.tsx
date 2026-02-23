@@ -159,7 +159,7 @@ export default function ChatWidget() {
         if (hasHistory || isOpen) {
             fetchHistory();
         }
-    }, 2000);
+    }, 4000);
 
     const interval = setInterval(fetchHistory, 3000); // Every 3s
     return () => {
