@@ -6,23 +6,40 @@ import Footer from "../../components/landing/Footer.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
-  return blogEntries.map((entry: CollectionEntry<"blog">) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  const sortedEntries = blogEntries.sort(
+    (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+      b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
+
+  return sortedEntries.map((entry: CollectionEntry<"blog">, index: number) => {
+    const prev =
+      index < sortedEntries.length - 1 ? sortedEntries[index + 1] : null;
+    const next = index > 0 ? sortedEntries[index - 1] : null;
+    return {
+      params: { slug: entry.slug },
+      props: { entry, prev, next },
+    };
+  });
 }
 
 interface Props {
   entry: CollectionEntry<"blog">;
+  prev: CollectionEntry<"blog"> | null;
+  next: CollectionEntry<"blog"> | null;
 }
 
-const { entry } = Astro.props;
+const { entry, prev, next } = Astro.props;
 const { Content } = await entry.render();
 ---
 
 <Layout
   title={`${entry.data.title} | CarniApp`}
   description={entry.data.description}
+  type="article"
+  articleData={{
+    author: entry.data.author,
+    pubDate: entry.data.pubDate,
+  }}
 >
   <Navigation />
 
@@ -73,24 +90,40 @@ const { Content } = await entry.render();
         <Content />
       </div>
 
-      <div
-        class="mt-20 p-10 bg-gray-50 rounded-3xl border border-gray-100 text-center"
-      >
-        <h3 class="text-2xl font-bold text-dark mb-4">
-          ¿Querés que tu carnicería sea la próxima en digitalizarse?
-        </h3>
-        <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
-          CarniApp ayuda a negocios como el tuyo a vender más y fidelizar
-          clientes con tecnología propia.
-        </p>
-        <a
-          href="https://wa.me/542213632191"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-dark font-bold py-4 px-8 rounded-full shadow-lg transition-all transform hover:scale-105"
-        >
-          Agendar una demo gratuita
-        </a>
+      <div class="mt-20 pt-10 border-t border-gray-100">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {
+            prev && (
+              <a
+                href={`/blog/${prev.slug}/`}
+                class="group p-8 bg-gray-50 rounded-3xl border border-gray-100 transition-all hover:bg-white hover:shadow-xl hover:-translate-y-1 block"
+              >
+                <span class="text-gray-400 text-sm font-bold uppercase tracking-widest block mb-2">
+                  ← Anterior
+                </span>
+                <h4 class="text-dark font-bold text-xl group-hover:text-primary transition-colors">
+                  {prev.data.title}
+                </h4>
+              </a>
+            )
+          }
+
+          {
+            next && (
+              <a
+                href={`/blog/${next.slug}/`}
+                class="group p-8 bg-gray-50 rounded-3xl border border-gray-100 transition-all hover:bg-white hover:shadow-xl hover:-translate-y-1 block text-right md:col-start-2"
+              >
+                <span class="text-gray-400 text-sm font-bold uppercase tracking-widest block mb-2">
+                  Siguiente →
+                </span>
+                <h4 class="text-dark font-bold text-xl group-hover:text-primary transition-colors">
+                  {next.data.title}
+                </h4>
+              </a>
+            )
+          }
+        </div>
       </div>
     </article>
   </main>

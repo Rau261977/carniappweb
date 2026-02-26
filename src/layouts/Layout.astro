@@ -1,74 +1,108 @@
 ---
 interface Props {
-	title: string;
+  title: string;
   description?: string;
+  ogImage?: string;
+  type?: "website" | "article";
+  articleData?: {
+    author: string;
+    pubDate: Date;
+  };
 }
 
-const { title, description = "CarniApp - El Sistema Operativo para Carnicerías Modernas. Aumenta tus ventas y fideliza clientes con tu propia App Inteligente." } = Astro.props;
-import ChatWidget from '../components/ChatWidget';
-import SEO from '../components/landing/SEO.astro';
-import '../styles/global.css';
+const {
+  title,
+  description = "CarniApp - El Sistema Operativo para Carnicerías Modernas. Aumenta tus ventas y fideliza clientes con tu propia App Inteligente.",
+  ogImage = "https://carniapp.com/icon.png",
+  type = "website",
+  articleData,
+} = Astro.props;
+import ChatWidget from "../components/ChatWidget";
+import SEO from "../components/landing/SEO.astro";
+import "../styles/global.css";
 ---
 
 <!doctype html>
 <html lang="es" class="scroll-smooth">
-	<head>
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-K2GKDGK2CE"></script>
-		<script is:inline>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2GKDGK2CE"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-			gtag('config', 'G-K2GKDGK2CE');
-		</script>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/favicon.png" />
-		<link rel="icon" type="image/png" href="/icon.png" />
-		<link rel="apple-touch-icon" href="/icon.png" />
-		<meta name="generator" content={Astro.generator} />
-    
+      gtag("config", "G-K2GKDGK2CE");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    <meta name="generator" content={Astro.generator} />
+
     <!-- Preconnect a dominios externos -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- Preload de fuentes críticas -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap">
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap"
+      />
     </noscript>
     <link rel="preconnect" href="https://api-production-531f.up.railway.app" />
     <link rel="canonical" href={`https://carniapp.com${Astro.url.pathname}`} />
-    
+
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://carniapp.com" />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={Astro.url.href} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://carniapp.com/icon.png" />
+    <meta property="og:image" content={ogImage} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://carniapp.com" />
+    <meta property="twitter:url" content={Astro.url.href} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="https://carniapp.com/icon.png" />
+    <meta property="twitter:image" content={ogImage} />
 
-    <SEO />
+    <SEO
+      type={type === "article" ? "BlogPosting" : "SoftwareApplication"}
+      title={title}
+      description={description}
+      image={ogImage}
+      author={articleData?.author}
+      datePublished={articleData?.pubDate.toISOString()}
+    />
 
-		<title>{title}</title>
-	</head>
-	<body class="text-dark antialiased bg-white">
-		<slot />
+    <title>{title}</title>
+  </head>
+  <body class="text-dark antialiased bg-white">
+    <slot />
     <ChatWidget client:idle />
-	</body>
+  </body>
 </html>
 
 <style is:global>
   body {
-    font-family: 'Urbanist', system-ui, sans-serif;
+    font-family: "Urbanist", system-ui, sans-serif;
   }
 </style>

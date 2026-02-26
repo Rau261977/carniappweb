@@ -1,27 +1,69 @@
 ---
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "CarniApp",
-  "operatingSystem": "Android, iOS",
-  "applicationCategory": "BusinessApplication, FoodApplication",
-  "description": "El Sistema Operativo para Carnicerías Modernas. Aumenta tus ventas y fideliza clientes con tu propia App Inteligente.",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "ARS"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "ratingCount": "120"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "CarniApp",
-    "logo": "https://carniapp.com/icon.png"
-  }
-};
+interface Props {
+  type?: "SoftwareApplication" | "BlogPosting";
+  title?: string;
+  description?: string;
+  image?: string;
+  author?: string;
+  datePublished?: string;
+}
+
+const {
+  type = "SoftwareApplication",
+  title,
+  description,
+  image = "https://carniapp.com/icon.png",
+  author = "Equipo CarniApp",
+  datePublished,
+} = Astro.props;
+
+let structuredData = {};
+
+if (type === "SoftwareApplication") {
+  structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "CarniApp",
+    operatingSystem: "Android, iOS",
+    applicationCategory: "BusinessApplication, FoodApplication",
+    description:
+      description ||
+      "El Sistema Operativo para Carnicerías Modernas. Aumenta tus ventas y fideliza clientes con tu propia App Inteligente.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "ARS",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      ratingCount: "120",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "CarniApp",
+      logo: "https://carniapp.com/icon.png",
+    },
+  };
+} else {
+  structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description: description,
+    image: image,
+    author: {
+      "@type": "Person",
+      name: author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "CarniApp",
+      logo: "https://carniapp.com/icon.png",
+    },
+    datePublished: datePublished,
+  };
+}
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
