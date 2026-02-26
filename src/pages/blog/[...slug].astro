@@ -1,65 +1,94 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Navigation from '../../components/landing/Navigation.astro';
-import Footer from '../../components/landing/Footer.astro';
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Navigation from "../../components/landing/Navigation.astro";
+import Footer from "../../components/landing/Footer.astro";
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  return blogEntries.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
+  const blogEntries = await getCollection("blog");
+  return blogEntries.map((entry: CollectionEntry<"blog">) => ({
+    params: { slug: entry.slug },
+    props: { entry },
   }));
+}
+
+interface Props {
+  entry: CollectionEntry<"blog">;
 }
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout title={`${entry.data.title} | CarniApp`} description={entry.data.description}>
+<Layout
+  title={`${entry.data.title} | CarniApp`}
+  description={entry.data.description}
+>
   <Navigation />
-  
+
   <main class="pt-32 pb-20 bg-white">
     <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mb-12">
-        <a href="/blog/" class="text-primary font-bold hover:underline mb-8 inline-block">← Volver al blog</a>
+        <a
+          href="/blog/"
+          class="text-primary font-bold hover:underline mb-8 inline-block"
+          >← Volver al blog</a
+        >
         <div class="flex items-center gap-2 mb-6">
-          {entry.data.tags.map(tag => (
-            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-bold rounded-full uppercase tracking-wider">
-              {tag}
-            </span>
-          ))}
+          {
+            entry.data.tags.map((tag: string) => (
+              <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-bold rounded-full uppercase tracking-wider">
+                {tag}
+              </span>
+            ))
+          }
         </div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-dark mb-6 leading-tight">
+        <h1
+          class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-dark mb-6 leading-tight"
+        >
           {entry.data.title}
         </h1>
         <div class="flex items-center gap-4 text-gray-500 font-medium">
           <span>{entry.data.author}</span>
           <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
           <span>
-            {entry.data.pubDate.toLocaleDateString('es-ES', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
+            {
+              entry.data.pubDate.toLocaleDateString("es-ES", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }
           </span>
         </div>
       </div>
 
-      <div class="prose prose-lg lg:prose-xl prose-primary max-w-none 
-        prose-headings:text-dark prose-headings:font-bold 
-        prose-p:text-gray-600 prose-p:leading-relaxed
-        prose-li:text-gray-600
+      <div
+        class="prose prose-lg lg:prose-xl prose-primary max-w-none
+        prose-headings:text-dark prose-headings:font-bold
         prose-strong:text-dark prose-strong:font-bold
-        prose-a:text-primary prose-a:font-bold hover:prose-a:underline">
+        prose-a:text-primary prose-a:font-bold hover:prose-a:underline
+        blog-post-content"
+      >
         <Content />
       </div>
 
-      <div class="mt-20 p-10 bg-gray-50 rounded-3xl border border-gray-100 text-center">
-        <h3 class="text-2xl font-bold text-dark mb-4">¿Querés que tu carnicería sea la próxima en digitalizarse?</h3>
+      <div
+        class="mt-20 p-10 bg-gray-50 rounded-3xl border border-gray-100 text-center"
+      >
+        <h3 class="text-2xl font-bold text-dark mb-4">
+          ¿Querés que tu carnicería sea la próxima en digitalizarse?
+        </h3>
         <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
-          CarniApp ayuda a negocios como el tuyo a vender más y fidelizar clientes con tecnología propia.
+          CarniApp ayuda a negocios como el tuyo a vender más y fidelizar
+          clientes con tecnología propia.
         </p>
-        <a href="https://wa.me/542213632191" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-dark font-bold py-4 px-8 rounded-full shadow-lg transition-all transform hover:scale-105">
+        <a
+          href="https://wa.me/542213632191"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-dark font-bold py-4 px-8 rounded-full shadow-lg transition-all transform hover:scale-105"
+        >
           Agendar una demo gratuita
         </a>
       </div>
@@ -68,3 +97,43 @@ const { Content } = await entry.render();
 
   <Footer />
 </Layout>
+
+<style is:global>
+  :root {
+    --h-color-neutral-700: #374151; /* Default value for the variable if not defined elsewhere */
+  }
+
+  .blog-post-content p,
+  .blog-post-content li {
+    color: var(--h-color-neutral-700) !important;
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.3px !important;
+    line-height: 32px !important;
+  }
+
+  .blog-post-content h3 {
+    color: #111111 !important;
+    font-size: 28px !important; /* Aprox 2px más que el prose default o ajustado a la escala */
+    font-weight: 800 !important;
+    margin-top: 2.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .blog-post-content img {
+    border-radius: 1.5rem;
+    margin: 3rem 0;
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .blog-post-content em {
+    display: block;
+    text-align: center;
+    color: #6b7280;
+    font-style: italic;
+    margin-top: -2rem;
+    margin-bottom: 3rem;
+  }
+</style>
