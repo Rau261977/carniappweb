@@ -17,7 +17,7 @@ Cuando el clima o el mercado frenan la salida de ciertos cortes, CarniApp te per
 - **Ofertas por proximidad**: Identificá y notificá a los clientes que se encuentran en tu radio de influencia inmediata para incentivarlos a pasar por el local o solicitar un delivery rápido, ideal para aprovechar el impulso de compra de quienes ya están cerca.
 - **Planificación por pronóstico del tiempo**: CarniApp utiliza el pronóstico extendido para anticiparse al desequilibrio de stock. Si se vienen días soleados, la app promueve activamente cortes para horno u olla (que suelen estancarse ante la alta demanda orgánica de asado), permitiéndote "limpiar" la media res y tener margen para ofrecer más parrilla sin quedarte con excedentes del resto de la vaca. Lo mismo ocurre en días de lluvia: incentivamos aquello que no se vende solo, equilibrando tu rentabilidad sin importar el clima.
 
-![Infografía de transformación digital](/concepto.webp)
+![Infografía de transformación digital](../../assets/fidelity-butcher.png)
 *La tecnología que convierte tu inventario en movimiento constante.*
 
 ### **Asegurar la base con el Cliente Fiel**

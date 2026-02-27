@@ -80,6 +80,16 @@ const { Content } = await entry.render();
         </div>
       </div>
 
+      {
+        entry.data.image && (
+          <img
+            src={entry.data.image}
+            alt={entry.data.title}
+            class="w-full aspect-video object-cover rounded-3xl shadow-2xl mb-12"
+          />
+        )
+      }
+
       <div
         class="prose prose-lg lg:prose-xl prose-primary max-w-none
         prose-headings:text-dark prose-headings:font-bold
@@ -143,6 +153,18 @@ const { Content } = await entry.render();
     font-weight: 400 !important;
     letter-spacing: 0.3px !important;
     line-height: 32px !important;
+  }
+
+  .blog-post-content ul {
+    list-style-type: disc !important;
+    padding-left: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .blog-post-content ol {
+    list-style-type: decimal !important;
+    padding-left: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
   }
 
   .blog-post-content h3 {
