@@ -10,9 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@ai-sdk/react": "^3.0.118",
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^6.0.2",
+    "ai": "^6.0.116",
     "astro": "^5.16.4",
     "clsx": "^2.1.1",
     "lucide-react": "^0.562.0",
