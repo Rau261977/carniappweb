@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Loader2, Minus, Maximize2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
-import { useChat } from '@ai-sdk/react';
 import { BookingForm } from './BookingForm';
 
 function ChatTooltip({ isOpen }: { isOpen: boolean }) {
@@ -75,27 +74,109 @@ export default function ChatWidget() {
     const apiUrl = import.meta.env.PUBLIC_CHATBOT_API_URL || 'https://api-production-531f.up.railway.app';
     const cleanApiUrl = apiUrl.endsWith('/') ? apiUrl.slice(0, -1) : apiUrl;
 
-    const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages } = useChat({
-        api: `${cleanApiUrl}/api/conversations/chat/stream`,
-        body: {
-            sessionId: sessionId,
-        },
-        initialMessages: [
-            { id: '1', role: 'assistant', content: '¡Hola! Soy **Rogelio**, el asistente virtual de CarniApp. ¿En qué puedo ayudarte hoy?' }
-        ],
-        onResponse: (response) => {
-            // Scroll to bottom when response starts
-            scrollToBottom();
-        },
-        onFinish: (message) => {
-            // Check if bot suggests booking
-            const msgLower = message.content.toLowerCase();
-            const bookingKeywords = ['formulario', 'agendar', 'demo', 'reunión', 'cita', 'agenda'];
-            if (bookingKeywords.some(k => msgLower.includes(k))) {
-                setShowBookingForm(true);
+    const [messages, setMessages] = useState<any[]>([
+        { id: '1', role: 'assistant', content: '¡Hola! Soy **Rogelio**, el asistente virtual de CarniApp. ¿En qué puedo ayudarte hoy?' }
+    ]);
+    const [input, setInput] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInput(e.target.value || '');
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!input.trim() || isLoading) return;
+
+        const userMsg = { id: Date.now().toString(), role: 'user', content: input };
+        setMessages(prev => [...prev, userMsg]);
+        setInput('');
+        setIsLoading(true);
+
+        const assistantId = (Date.now() + 1).toString();
+
+        try {
+            console.log('[ChatWidget] Sending to:', `${cleanApiUrl}/api/conversations/chat/stream`);
+            const response = await fetch(`${cleanApiUrl}/api/conversations/chat/stream`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userMsg.content, sessionId })
+            });
+
+            console.log('[ChatWidget] Response status:', response.status);
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('[ChatWidget] Error response:', errorText);
+                throw new Error(`Error del servidor: ${response.status}`);
             }
+
+            // Add empty placeholder for assistant message
+            setMessages(prev => [...prev, { id: assistantId, role: 'assistant', content: '...' }]);
+
+            if (response.body) {
+                // Streaming path
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let assistantContent = '';
+
+                try {
+                    while (true) {
+                        const { value, done } = await reader.read();
+                        if (done) break;
+                        const chunk = decoder.decode(value, { stream: true });
+                        console.log('[ChatWidget] Chunk received:', JSON.stringify(chunk));
+                        assistantContent += chunk;
+
+                        setMessages(prev => prev.map(m =>
+                            m.id === assistantId ? { ...m, content: assistantContent } : m
+                        ));
+                    }
+                    // Flush any remaining bytes
+                    const remaining = decoder.decode();
+                    if (remaining) {
+                        assistantContent += remaining;
+                        setMessages(prev => prev.map(m =>
+                            m.id === assistantId ? { ...m, content: assistantContent } : m
+                        ));
+                    }
+                } finally {
+                    reader.releaseLock();
+                }
+
+                if (!assistantContent.trim()) {
+                    // Fallback: try reading as text
+                    const text = await response.clone().text().catch(() => '');
+                    assistantContent = text || 'No se recibió respuesta.';
+                    setMessages(prev => prev.map(m =>
+                        m.id === assistantId ? { ...m, content: assistantContent } : m
+                    ));
+                }
+
+                // Booking keywords check
+                const msgLower = assistantContent.toLowerCase();
+                const bookingKeywords = ['formulario', 'agendar', 'demo', 'reunión', 'cita', 'agenda'];
+                if (bookingKeywords.some(k => msgLower.includes(k))) {
+                    setShowBookingForm(true);
+                }
+
+            } else {
+                // No body, fallback
+                setMessages(prev => prev.map(m =>
+                    m.id === assistantId ? { ...m, content: 'No se recibió respuesta del servidor.' } : m
+                ));
+            }
+
+        } catch (err) {
+            console.error('[ChatWidget] Error:', err);
+            setMessages(prev => [
+                ...prev.filter(m => m.id !== assistantId),
+                { id: Date.now().toString(), role: 'assistant', content: 'Lo siento, ocurrió un error en la conexión. Por favor intenta de nuevo.' }
+            ]);
+        } finally {
+            setIsLoading(false);
         }
-    });
+    };
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -245,18 +326,18 @@ export default function ChatWidget() {
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     className={`
-                relative bg-gradient-to-br from-[#01b5f7] to-[#018af7] text-white p-0 rounded-2xl shadow-2xl transition-all duration-500 hover:scale-105 active:scale-95 flex items-center justify-center border-4 border-white overflow-hidden w-16 h-16 md:w-20 md:h-20
+                relative bg-gradient-to-br from-[#01b5f7] to-[#018af7] text-white p-0 rounded-2xl shadow-2xl transition-all duration-500 hover:scale-105 active:scale-95 flex items-center justify-center border-4 border-white overflow-hidden w-14 h-14 md:w-16 md:h-16
                 ${isOpen ? 'rotate-90' : 'hover:shadow-[#01b5f7]/30'}
             `}
                 >
                     <AnimatePresence mode="wait">
                         {isOpen ? (
                             <motion.div key="close" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }}>
-                                <X size={32} strokeWidth={2.5} />
+                                <X size={28} strokeWidth={2.5} />
                             </motion.div>
                         ) : (
                             <motion.div key="open" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className="relative">
-                                <span className="text-4xl md:text-5xl drop-shadow-lg">🤖</span>
+                                <span className="text-3xl md:text-4xl drop-shadow-lg">🤖</span>
                             </motion.div>
                         )}
                     </AnimatePresence>
