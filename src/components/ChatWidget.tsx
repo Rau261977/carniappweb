@@ -5,10 +5,11 @@ import ReactMarkdown from 'react-markdown';
 import { BookingForm } from './BookingForm';
 
 function ChatTooltip({ isOpen }: { isOpen: boolean }) {
-    const phrases = ["¿En qué te ayudo?", "Ventas y gestión", "Agendá tu demo"];
+    const phrases = ["¡Hola! ¿En qué puedo ayudarte?", "Estoy para responder tus dudas"];
     const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
     const [displayedText, setDisplayedText] = useState("");
     const [isTyping, setIsTyping] = useState(true);
+    const [transitionCount, setTransitionCount] = useState(0);
 
     useEffect(() => {
         if (isOpen) return;
@@ -27,14 +28,21 @@ function ChatTooltip({ isOpen }: { isOpen: boolean }) {
             }
         } else {
             timeout = setTimeout(() => {
+                // If we've already done 4 transitions (2 full rounds), stop on phrase 0
+                if (transitionCount >= 4) {
+                    return;
+                }
+
+                const nextIndex = (currentPhraseIndex + 1) % phrases.length;
                 setDisplayedText("");
-                setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+                setCurrentPhraseIndex(nextIndex);
                 setIsTyping(true);
+                setTransitionCount(prev => prev + 1);
             }, 100);
         }
 
         return () => clearTimeout(timeout);
-    }, [displayedText, isTyping, currentPhraseIndex, isOpen]);
+    }, [displayedText, isTyping, currentPhraseIndex, isOpen, transitionCount]);
 
     if (isOpen) return null;
 
