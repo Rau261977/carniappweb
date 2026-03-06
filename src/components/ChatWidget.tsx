@@ -162,9 +162,8 @@ export default function ChatWidget() {
                 }
 
                 // Booking keywords check
-                const msgLower = assistantContent.toLowerCase();
-                const bookingKeywords = ['formulario', 'agendar', 'demo', 'reunión', 'cita', 'agenda'];
-                if (bookingKeywords.some(k => msgLower.includes(k))) {
+                const bookingRegex = /\b(formulario|agendar|demo|reunión|cita|agenda)\b/i;
+                if (bookingRegex.test(assistantContent)) {
                     setShowBookingForm(true);
                 }
 
