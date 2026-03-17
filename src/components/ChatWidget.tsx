@@ -210,7 +210,12 @@ export default function ChatWidget() {
                             <div className="flex items-center gap-3">
                                 <div className="relative">
                                     <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-[#01b5f7] shadow-inner rotate-3">
-                                        <Bot size={28} />
+                                        <div className="md:hidden">
+                                            <Bot size={28} />
+                                        </div>
+                                        <div className="hidden md:block text-2xl">
+                                            🤖
+                                        </div>
                                     </div>
                                     <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 border-2 border-[#01b5f7] rounded-full"></div>
                                 </div>
@@ -343,8 +348,13 @@ export default function ChatWidget() {
                                 <X size={28} strokeWidth={2.5} />
                             </motion.div>
                         ) : (
-                            <motion.div key="open" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className="relative text-white">
-                                <Bot size={32} strokeWidth={2.5} className="md:w-10 md:h-10" />
+                            <motion.div key="open" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className="relative">
+                                <div className="md:hidden text-white">
+                                    <Bot size={32} strokeWidth={2.5} />
+                                </div>
+                                <div className="hidden md:block text-4xl drop-shadow-lg">
+                                    🤖
+                                </div>
                             </motion.div>
                         )}
                     </AnimatePresence>
