@@ -196,7 +196,7 @@ export default function ChatWidget() {
     }, [messages, isOpen]);
 
     return (
-        <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end pointer-events-none font-sans">
+        <div className="fixed bottom-[9px] md:bottom-6 right-6 z-[9999] flex flex-col items-end pointer-events-none font-sans">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
