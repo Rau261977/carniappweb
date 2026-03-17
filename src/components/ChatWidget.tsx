@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Loader2, Minus, Maximize2 } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2, Minus, Maximize2, Bot } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { BookingForm } from './BookingForm';
@@ -209,8 +209,8 @@ export default function ChatWidget() {
                         <div className="p-5 flex justify-between items-center bg-gradient-to-r from-[#01b5f7] to-[#018af7] text-white">
                             <div className="flex items-center gap-3">
                                 <div className="relative">
-                                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-inner rotate-3">
-                                        🤖
+                                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-[#01b5f7] shadow-inner rotate-3">
+                                        <Bot size={28} />
                                     </div>
                                     <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 border-2 border-[#01b5f7] rounded-full"></div>
                                 </div>
@@ -343,8 +343,8 @@ export default function ChatWidget() {
                                 <X size={28} strokeWidth={2.5} />
                             </motion.div>
                         ) : (
-                            <motion.div key="open" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className="relative">
-                                <span className="text-3xl md:text-4xl drop-shadow-lg">🤖</span>
+                            <motion.div key="open" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className="relative text-white">
+                                <Bot size={32} strokeWidth={2.5} className="md:w-10 md:h-10" />
                             </motion.div>
                         )}
                     </AnimatePresence>
