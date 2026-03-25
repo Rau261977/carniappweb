@@ -26,6 +26,24 @@ import "../styles/global.css";
 <html lang="es" class="scroll-smooth">
   <head>
     <!-- Google tag (gtag.js) -->
+    <script is:inline>
+      // Sistema de exclusión para el desarrollador
+      const GA_ID = "G-K2GKDGK2CE";
+      const OPT_OUT_KEY = "ga_opt_out";
+      const urlParams = new URLSearchParams(window.location.search);
+
+      // Si se visita la web con ?exclude_me=true, se activa la exclusión permanente en este navegador
+      if (urlParams.get("exclude_me") === "true") {
+        localStorage.setItem(OPT_OUT_KEY, "true");
+        alert("Exclusión de Analytics activada para este navegador.");
+      }
+
+      // Si la exclusión está activa, desactivamos GA globalmente
+      if (localStorage.getItem(OPT_OUT_KEY) === "true") {
+        window[`ga-disable-${GA_ID}`] = true;
+        console.log("Google Analytics deshabilitado (Modo desarrollador)");
+      }
+    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2GKDGK2CE"
     ></script>
     <script is:inline>
