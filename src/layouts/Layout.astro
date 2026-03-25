@@ -38,10 +38,14 @@ import "../styles/global.css";
         alert("Exclusión de Analytics activada para este navegador.");
       }
 
-      // Si la exclusión está activa, desactivamos GA globalmente
-      if (localStorage.getItem(OPT_OUT_KEY) === "true") {
+      // Si la exclusión está activa o estamos en local, desactivamos GA globalmente
+      if (
+        localStorage.getItem(OPT_OUT_KEY) === "true" ||
+        window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1"
+      ) {
         window[`ga-disable-${GA_ID}`] = true;
-        console.log("Google Analytics deshabilitado (Modo desarrollador)");
+        console.log("Google Analytics deshabilitado (Modo desarrollador/Local)");
       }
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2GKDGK2CE"
