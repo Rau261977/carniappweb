@@ -3,7 +3,7 @@ const faqs = [
   {
     question: "¿Precios?",
     answer:
-      "Es difícil establecer un precio único, nos adaptamos a cualquier negocio en cualquier lugar del mundo y en cualquier lenguaje, para que lo consideres, el mínimo presupuesto es de U$S 1500 por setup inicial, primer mes e incluye U$S 150 de créditos para pauta publicitaria. Máximo de 300 UAM (Usuarios Activos Mensuales). Y mantenimiento mensual de U$S 500. Nuestra política de precios esta pensada para que pequeños negocios puedan crecer. Si tu negocio es mediano a corporación, tenemos servicios empresariales para múltples sucursales y niveles industriales.",
+      "Contamos con planes flexibles que se adaptan a negocios de todos los tamaños. Te invitamos a visitar nuestra <a href='/pricing/' class='text-primary font-bold hover:underline'>página de precios</a> para conocer el detalle de los costos y beneficios de cada opción.",
   },
   {
     question: "¿Cómo funciona el servicio?",
@@ -84,7 +84,7 @@ const faqs = [
                 </span>
               </summary>
               <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-50 pt-4">
-                {faq.answer}
+                <div set:html={faq.answer}></div>
               </div>
             </details>
           </div>
