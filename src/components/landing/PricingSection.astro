@@ -150,11 +150,7 @@ const pricingPlans = [
             </ul>
 
             <a
-              href={
-                plan.price === "Consulte"
-                  ? "https://wa.me/tu_numero"
-                  : "#contact"
-              }
+              href={`https://wa.me/542213632191?text=${encodeURIComponent(`Hola, estoy interesado en el plan ${plan.name}`)}`}
               class={`w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${plan.highlight ? "bg-primary text-black shadow-lg shadow-primary/40 hover:bg-primary-dark" : "bg-dark text-white hover:bg-black opacity-90 hover:opacity-100"}`}
             >
               {plan.cta}
