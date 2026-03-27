@@ -4,44 +4,47 @@ const pricingPlans = [
     name: "Básico",
     price: "500",
     setup: "1900",
-    description: "Ideal para agencias, freelancers y carniceros que gestionan su propio marketing.",
+    description:
+      "Ideal para agencias, freelancers y carniceros que gestionan su propio marketing.",
     features: [
       "Configuración básica",
       "1 Punto de venta (locación)",
       "App de Logística (Recepción, Cálculo de entrega, Chat en vivo)",
       "Hasta 1000 UAM (Usuarios Activos Mensuales)*",
-      "Publicación en Google Play y Apple Store"
+      "Publicación en Google Play y Apple Store",
     ],
     cta: "Comenzar ahora",
-    highlight: false
+    highlight: false,
   },
   {
     name: "Gestionado",
     price: "700",
     setup: "1900",
-    description: "Para quienes prefieren que nosotros nos encarguemos de la plataforma.",
+    description:
+      "Para quienes prefieren que nosotros nos encarguemos de la plataforma.",
     features: [
       "Todo lo anterior",
       "Gestión y administración de la plataforma",
       "Soporte prioritario",
-      "Optimización continua de inventario"
+      "Optimización continua de inventario",
     ],
     cta: "Elegir plan",
-    highlight: true
+    highlight: true,
   },
   {
     name: "Full + Redes",
     price: "1100",
     setup: "1900",
-    description: "La solución completa para dominar el mercado local y digital.",
+    description:
+      "La solución completa para dominar el mercado local y digital.",
     features: [
       "Todo lo anterior",
       "Gestión integral de Redes Sociales",
       "Administración y publicación de contenido",
-      "Estrategia de crecimiento acelerado"
+      "Estrategia de crecimiento acelerado",
     ],
     cta: "Elegir plan",
-    highlight: false
+    highlight: false,
   },
   {
     name: "Personalizado",
@@ -52,67 +55,120 @@ const pricingPlans = [
       "Múltiples sucursales",
       "Arquitectura 100% flexible",
       "Integraciones a medida",
-      "Account Manager dedicado"
+      "Account Manager dedicado",
     ],
     cta: "Contactar",
-    highlight: false
-  }
+    highlight: false,
+  },
 ];
 ---
 
 <section id="pricing" class="py-20 bg-gray-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-black font-bold text-sm tracking-wider uppercase mb-2 block">Nuestros Planes</h2>
-      <p class="text-4xl md:text-5xl font-extrabold text-black mb-4 leading-tight">
-        Elige el nivel de <span class="relative inline-block">crecimiento<svg class="absolute w-full h-3 -bottom-1 left-0 text-primary z-[-1]" viewBox="0 0 200 9" preserveAspectRatio="none"><path d="M0 5 L200 5" stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round"/></svg></span> para tu negocio
+      <h2
+        class="text-black font-bold text-sm tracking-wider uppercase mb-2 block"
+      >
+        Nuestros Planes
+      </h2>
+      <p
+        class="text-4xl md:text-5xl font-extrabold text-black mb-4 leading-tight"
+      >
+        Elige el nivel de <span class="relative inline-block"
+          >crecimiento<svg
+            class="absolute w-full h-3 -bottom-1 left-0 text-primary z-[-1]"
+            viewBox="0 0 200 9"
+            preserveAspectRatio="none"
+            ><path
+              d="M0 5 L200 5"
+              stroke="currentColor"
+              stroke-width="6"
+              fill="none"
+              stroke-linecap="round"></path></svg
+          ></span
+        > para tu negocio
       </p>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto">Sin comisiones por venta. Un costo fijo transparente para escalar tu carnicería digital.</p>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Sin comisiones por venta. Un costo fijo transparente para escalar tu
+        carnicería digital.
+      </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {pricingPlans.map(plan => (
-        <div class={`relative bg-white p-8 rounded-3xl shadow-xl shadow-primary/10 border flex flex-col h-full transform transition-all duration-300 hover:-translate-y-2 ${plan.highlight ? 'border-primary ring-2 ring-primary/20 scale-105 z-10' : 'border-gray-100 hover:border-primary/50'}`}>
-          {plan.highlight && (
-            <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-black font-bold text-xs py-1 px-4 rounded-full uppercase tracking-widest shadow-lg">Más Popular</span>
-          )}
-          
-          <div class="mb-8">
-            <h3 class="text-2xl font-bold text-dark mb-4">{plan.name}</h3>
-            <p class="text-gray-500 text-sm leading-relaxed mb-6 h-12 overflow-hidden">{plan.description}</p>
-            <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-extrabold text-black">{plan.price !== "Consulte" ? `$${plan.price}` : plan.price}</span>
-              {plan.price !== "Consulte" && <span class="text-gray-500 font-medium">/mes</span>}
-            </div>
-            {plan.setup && (
-              <p class="text-xs text-gray-400 mt-2">+ ${plan.setup} setup inicial (pago único)</p>
-            )}
-          </div>
-
-          <ul class="space-y-4 mb-8 flex-grow">
-            {plan.features.map(feature => (
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-primary mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-sm text-gray-600 leading-snug">{feature}</span>
-              </li>
-            ))}
-          </ul>
-
-          <a 
-            href={plan.price === "Consulte" ? "https://wa.me/tu_numero" : "#contact"} 
-            class={`w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${plan.highlight ? 'bg-primary text-black shadow-lg shadow-primary/40 hover:bg-primary-dark' : 'bg-dark text-white hover:bg-black opacity-90 hover:opacity-100'}`}
+      {
+        pricingPlans.map((plan) => (
+          <div
+            class={`relative bg-white p-8 rounded-3xl shadow-xl shadow-primary/10 border flex flex-col h-full transform transition-all duration-300 hover:-translate-y-2 ${plan.highlight ? "border-primary ring-2 ring-primary/20 scale-105 z-10" : "border-gray-100 hover:border-primary/50"}`}
           >
-            {plan.cta}
-          </a>
-        </div>
-      ))}
+            {plan.highlight && (
+              <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-black font-bold text-xs py-1 px-4 rounded-full uppercase tracking-widest shadow-lg">
+                Más Popular
+              </span>
+            )}
+
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold text-dark mb-4">{plan.name}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed mb-6 h-12 overflow-hidden">
+                {plan.description}
+              </p>
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-extrabold text-black">
+                  {plan.price !== "Consulte" ? `$${plan.price}` : plan.price}
+                </span>
+                {plan.price !== "Consulte" && (
+                  <span class="text-gray-500 font-medium">/mes</span>
+                )}
+              </div>
+              {plan.setup && (
+                <p class="text-xs text-gray-400 mt-2">
+                  + ${plan.setup} setup inicial (pago único)
+                </p>
+              )}
+            </div>
+
+            <ul class="space-y-4 mb-8 flex-grow">
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-3">
+                  <svg
+                    class="w-5 h-5 text-primary mt-0.5 shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span class="text-sm text-gray-600 leading-snug">
+                    {feature}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={
+                plan.price === "Consulte"
+                  ? "https://wa.me/tu_numero"
+                  : "#contact"
+              }
+              class={`w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${plan.highlight ? "bg-primary text-black shadow-lg shadow-primary/40 hover:bg-primary-dark" : "bg-dark text-white hover:bg-black opacity-90 hover:opacity-100"}`}
+            >
+              {plan.cta}
+            </a>
+          </div>
+        ))
+      }
     </div>
 
     <div class="mt-16 text-center">
       <p class="text-xs text-gray-500 italic max-w-3xl mx-auto">
-        *UAM (Usuarios Activos Mensuales): Se considera que una cuenta excede el límite si supera los 1000 usuarios que interactúan con la app durante 2 meses consecutivos, o si alcanza más de 2000 usuarios en un solo mes.
+        *UAM (Usuarios Activos Mensuales): Se considera que una cuenta excede el
+        límite si supera los 1000 usuarios que interactúan con la app durante 2
+        meses consecutivos, o si alcanza más de 2000 usuarios en un solo mes.
       </p>
     </div>
   </div>
