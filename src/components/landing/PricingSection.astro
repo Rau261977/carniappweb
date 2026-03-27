@@ -2,8 +2,11 @@
 const pricingPlans = [
   {
     name: "Básico",
-    price: "500",
+    price: "600",
+    promoPrice: "480",
+    isPromo: true,
     setup: "1900",
+    promoSetup: "1520",
     description:
       "Ideal para agencias, freelancers y carniceros que gestionan su propio marketing.",
     features: [
@@ -18,23 +21,30 @@ const pricingPlans = [
   },
   {
     name: "Gestionado",
-    price: "700",
+    price: "900",
+    promoPrice: "720",
+    isPromo: true,
     setup: "1900",
+    promoSetup: "1520",
     description:
       "Para quienes prefieren que nosotros nos encarguemos de la plataforma.",
     features: [
       "Todo lo anterior",
       "Gestión y administración de la plataforma",
       "Soporte prioritario",
-      "Optimización continua de inventario",
+      "Optimización continua del plan de marketing",
+      "Acciones continuas basadas en datos",
     ],
     cta: "Elegir plan",
     highlight: true,
   },
   {
     name: "Full + Redes",
-    price: "1100",
+    price: "1300",
+    promoPrice: "1040",
+    isPromo: true,
     setup: "1900",
+    promoSetup: "1520",
     description:
       "La solución completa para dominar el mercado local y digital.",
     features: [
@@ -49,6 +59,7 @@ const pricingPlans = [
   {
     name: "Personalizado",
     price: "Consulte",
+    isPromo: false,
     setup: null,
     description: "Para grandes negocios y cadenas con necesidades específicas.",
     features: [
@@ -106,22 +117,46 @@ const pricingPlans = [
               </span>
             )}
 
+            {plan.isPromo && (
+              <div class="absolute -top-4 -right-4 bg-red-600 text-white text-xs font-bold py-2 px-3 rounded-xl rotate-12 shadow-lg animate-pulse">
+                20% OFF <br /> LANZAMIENTO
+              </div>
+            )}
+
             <div class="mb-8">
               <h3 class="text-2xl font-bold text-dark mb-4">{plan.name}</h3>
               <p class="text-gray-500 text-sm leading-relaxed mb-6 h-12 overflow-hidden">
                 {plan.description}
               </p>
-              <div class="flex items-baseline gap-1">
-                <span class="text-4xl font-extrabold text-black">
-                  {plan.price !== "Consulte" ? `$${plan.price}` : plan.price}
-                </span>
-                {plan.price !== "Consulte" && (
-                  <span class="text-gray-500 font-medium">/mes</span>
+              <div class="flex flex-col gap-1">
+                {plan.isPromo && (
+                  <span class="text-sm text-gray-400 line-through font-medium">
+                    ${plan.price}/mes
+                  </span>
                 )}
+                <div class="flex items-baseline gap-1">
+                  <span class="text-4xl font-extrabold text-black">
+                    {plan.price !== "Consulte"
+                      ? `$${plan.isPromo ? plan.promoPrice : plan.price}`
+                      : plan.price}
+                  </span>
+                  {plan.price !== "Consulte" && (
+                    <span class="text-gray-500 font-medium">/mes</span>
+                  )}
+                </div>
               </div>
               {plan.setup && (
-                <p class="text-xs text-gray-400 mt-2">
-                  + ${plan.setup} setup inicial (pago único)
+                <p class="text-[13px] text-gray-500 mt-2">
+                  +{" "}
+                  {plan.isPromo && (
+                    <span class="line-through mr-1 font-medium">
+                      ${plan.setup}
+                    </span>
+                  )}
+                  <span class={plan.isPromo ? "font-bold text-dark" : ""}>
+                    ${plan.isPromo ? plan.promoSetup : plan.setup}
+                  </span>{" "}
+                  setup inicial (pago único)
                 </p>
               )}
             </div>
