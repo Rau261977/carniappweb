@@ -5,8 +5,8 @@ const pricingPlans = [
     price: "600",
     promoPrice: "480",
     isPromo: true,
-    setup: "1900",
-    promoSetup: "1520",
+    setup: "1500",
+    promoSetup: "750",
     description:
       "Ideal para agencias, freelancers y carniceros que gestionan su propio marketing.",
     features: [
@@ -24,8 +24,8 @@ const pricingPlans = [
     price: "900",
     promoPrice: "720",
     isPromo: true,
-    setup: "1900",
-    promoSetup: "1520",
+    setup: "1500",
+    promoSetup: "750",
     description:
       "Para quienes prefieren que nosotros nos encarguemos de la plataforma.",
     features: [
@@ -43,8 +43,8 @@ const pricingPlans = [
     price: "1300",
     promoPrice: "1040",
     isPromo: true,
-    setup: "1900",
-    promoSetup: "1520",
+    setup: "1500",
+    promoSetup: "750",
     description:
       "La solución completa para dominar el mercado local y digital.",
     features: [
@@ -101,7 +101,10 @@ const pricingPlans = [
       </p>
       <p class="text-xl text-gray-600 max-w-2xl mx-auto">
         Sin comisiones por venta. Un costo fijo transparente para escalar tu
-        carnicería digital.
+        carnicería digital. <br />
+        <span class="text-sm font-medium text-gray-400 mt-2 block">
+          *Precios en US$. El descuento del 20% en la suscripción aplica por los primeros 6 meses.
+        </span>
       </p>
     </div>
 
@@ -119,7 +122,7 @@ const pricingPlans = [
 
             {plan.isPromo && (
               <div class="absolute -top-4 -right-4 bg-red-600 text-white text-xs font-bold py-2 px-3 rounded-xl rotate-12 shadow-lg animate-pulse">
-                20% OFF <br /> LANZAMIENTO
+                50% OFF SETUP <br /> + 20% MENSUAL
               </div>
             )}
 
@@ -144,6 +147,12 @@ const pricingPlans = [
                     <span class="text-gray-500 font-medium">/mes</span>
                   )}
                 </div>
+                {plan.isPromo && (
+                  <span class="text-xs font-bold text-red-600 uppercase tracking-tight mt-1 flex items-center gap-1">
+                    <span class="bg-red-100 px-1.5 py-0.5 rounded">20% OFF</span>
+                    <span>x 6 meses</span>
+                  </span>
+                )}
               </div>
               {plan.setup && (
                 <p class="text-[13px] text-gray-500 mt-2">
