@@ -1,24 +1,64 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/landing/Navigation.astro';
-import HeroSection from '../components/landing/HeroSection.astro';
-import FeaturesSection from '../components/landing/FeaturesSection.astro';
-import WhiteLabelSection from '../components/landing/WhiteLabelSection.astro';
-import MarketingEngineSection from '../components/landing/MarketingEngineSection.astro';
-import HowItWorksSection from '../components/landing/HowItWorksSection.astro';
-import Footer from '../components/landing/Footer.astro';
-import FAQSection from '../components/landing/FAQSection.astro';
+import '../styles/landing.css';
+const whatsapp = 'https://wa.me/542213632191?text=Hola%2C%20quiero%20conocer%20CarniApp%20para%20mi%20negocio';
+const benefits = [
+  { n: '01', icon: '↗', title: 'Vendé incluso con el local cerrado.', text: 'Tu catálogo está abierto todo el día. Tus clientes eligen, pagan y coordinan entrega o retiro cuando les conviene.' },
+  { n: '02', icon: '◎', title: 'Tus clientes vuelven a tu marca.', text: 'Una app exclusiva, sin competidores al lado. Promociones y notificaciones que mantienen vivo el vínculo.' },
+  { n: '03', icon: '⌁', title: 'Más pedidos. Menos vueltas.', text: 'Administrá productos, stock, sucursales y entregas desde un solo lugar, con información para decidir mejor.' },
+];
+const faqs = [
+  { q: '¿La app lleva la marca de mi carnicería?', a: 'Sí. Personalizamos el logo, los colores, el catálogo y la experiencia para que tus clientes compren directamente a tu marca.' },
+  { q: '¿Tengo que ocuparme de la tecnología?', a: 'No. Nos encargamos del desarrollo, mantenimiento y las actualizaciones. Podés elegir un servicio gestionado o manejar la operación con tu equipo.' },
+  { q: '¿Puedo ofrecer envíos y retiro en el local?', a: 'Sí. Configurás zonas, costos y horarios de entrega, o puntos de retiro. También podés integrar tu propia logística.' },
+  { q: '¿Sirve si tengo varias sucursales?', a: 'Sí. Podés reunir tus sucursales en una sola experiencia de marca y organizar los pedidos de cada una.' },
+];
 ---
-
-<Layout title="CarniApp - App Móvil Propia para tu Carnicería, Distribuidores y comercios afines">
-  <Navigation />
-  <main>
-    <HeroSection />
-    <FeaturesSection />
-    <WhiteLabelSection />
-    <MarketingEngineSection />
-    <HowItWorksSection />
-    <FAQSection />
-  </main>
-  <Footer />
+<Layout title="CarniApp | Tu carnicería, en cada bolsillo" description="Una app con tu marca para vender carne online, fidelizar clientes y hacer crecer tu carnicería. Pedidos, marketing y logística en un solo lugar.">
+  <div class="landing-page">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="CarniApp, inicio"><img src="/logo.png" alt="CarniApp" width="54" height="54" /><span>CarniApp</span></a>
+      <nav class="desktop-nav" aria-label="Navegación principal"><a href="#beneficios">Beneficios</a><a href="#app">La app</a><a href="#como-funciona">Cómo funciona</a><a href="/blog/">Blog</a><a href="/pricing/">Planes</a></nav>
+      <a class="header-cta" href={whatsapp} target="_blank" rel="noopener noreferrer">Hablemos de tu app <span aria-hidden="true">↗</span></a>
+      <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+    </header>
+    <nav class="mobile-nav" id="mobile-menu" aria-label="Navegación móvil" hidden><a href="#beneficios">Beneficios</a><a href="#app">La app</a><a href="#como-funciona">Cómo funciona</a><a href="/blog/">Blog</a><a href="/pricing/">Planes</a><a href={whatsapp} target="_blank" rel="noopener noreferrer">Hablemos de tu app ↗</a></nav>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> TECNOLOGÍA HECHA PARA LA INDUSTRIA CÁRNICA</div>
+            <h1 id="hero-title">TU CARNICERÍA.<br /><em>EN CADA</em><br /><span class="highlight">BOLSILLO.</span></h1>
+            <p>Tu propia app para vender más, estar cerca de tus clientes y hacer que comprar carne sea tan fácil como mandar un mensaje.</p>
+            <div class="hero-actions"><a class="button button-yellow" href={whatsapp} target="_blank" rel="noopener noreferrer">Quiero mi propia app <span aria-hidden="true">↗</span></a><a class="text-link" href="#demo">Ver cómo funciona <span aria-hidden="true">↘</span></a></div>
+            <div class="hero-foot"><span class="line"></span><span>Una app con tu marca.<br />Un negocio sin límites.</span></div>
+          </div>
+          <div class="hero-visual"><img class="hero-photo" src="/carnicero-app.png" alt="Carnicero sonriente entregando un pedido preparado a un cliente" fetchpriority="high" /><div class="hero-photo-shade"></div><div class="floating-note"><span class="note-icon">↗</span><strong>Tu marca, en su celular.</strong><small>Más cerca. Más ventas.</small></div><div class="hero-vertical">CARNIAPP / TU NEGOCIO, SIEMPRE ABIERTO</div></div>
+        </div>
+        <div class="hero-bottom"><span>DE LA VIDRIERA AL CELULAR</span><span>DESLIZÁ PARA DESCUBRIR <b>↓</b></span></div>
+      </section>
+      <div class="ticker" aria-label="Ventajas de CarniApp"><div class="ticker-inner"><span>TU MARCA</span><i>✳</i><span>TUS CLIENTES</span><i>✳</i><span>TU APP</span><i>✳</i><span>MÁS VENTAS</span><i>✳</i><span>TU MARCA</span><i>✳</i><span>TUS CLIENTES</span><i>✳</i><span>TU APP</span><i>✳</i><span>MÁS VENTAS</span><i>✳</i></div></div>
+      <section class="intro section-wrap" id="beneficios" aria-labelledby="benefits-title"><div class="section-kicker"><span>01 / LA OPORTUNIDAD</span><span class="kicker-line"></span></div><div class="intro-heading"><h2 id="benefits-title">QUE TE ELIJAN<br /><span>UNA Y OTRA VEZ.</span></h2><p>La comodidad se convirtió en parte de la compra. Llevá tu carnicería al lugar donde tus clientes ya están: su celular.</p></div><div class="benefit-grid">{benefits.map((b) => <article class="benefit-card"><div class="benefit-top"><span>{b.n}</span><span class="benefit-icon" aria-hidden="true">{b.icon}</span></div><h3>{b.title}</h3><p>{b.text}</p><span class="benefit-arrow" aria-hidden="true">↗</span></article>)}</div></section>
+      <section class="customer-story" aria-labelledby="customer-title"><div class="customer-image"><img src="/cliente-app-carne.png" alt="Una clienta sonriente compra carne desde su celular mientras prepara una comida en familia" loading="lazy" /></div><div class="customer-copy"><div class="section-kicker">DEL LADO DE TUS CLIENTES</div><h2 id="customer-title">LA COMPRA<br />QUE QUIEREN.<br /><span>SIN HACER FILA.</span></h2><p>Eligen sus cortes, compran desde donde estén y reciben el pedido o lo retiran cuando les queda cómodo.</p><a class="button button-dark" href="#app">Conocé la experiencia <span aria-hidden="true">↗</span></a><span class="story-asterisk" aria-hidden="true">✳</span></div></section>
+      <section class="product-section" id="app" aria-labelledby="app-title"><div class="section-wrap product-grid"><div class="product-copy"><div class="section-kicker">02 / TU MARCA, EN PRIMER PLANO</div><h2 id="app-title">NO ES OTRA APP.<br /><span>ES TU<br />CARNICERÍA.</span></h2><p>Una experiencia hecha a medida: tu logo, tus colores, tus productos y tu forma de trabajar. Tu negocio crece sin perder lo que lo hace único.</p><div class="product-points"><span>✓ Catálogo y precios autoadministrables</span><span>✓ Pedidos para envío o retiro</span><span>✓ Una o varias sucursales</span><span>✓ Notificaciones y promociones propias</span></div><a class="inline-link" href={whatsapp} target="_blank" rel="noopener noreferrer">Hablemos de tu marca <span aria-hidden="true">↗</span></a></div><div class="phones-stage" aria-label="Ejemplos de aplicación personalizada para carnicerías"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="phone phone-back"><div class="phone-notch"></div><div class="sample-screen sample-red"><div class="sample-status">9:41 <span>●●●</span></div><div class="sample-logo">LA ESQUINA<br /><small>CARNICERÍA</small></div><div class="sample-tag">FRESCURA TODOS LOS DÍAS</div><div class="sample-bag">🥩</div><div class="sample-bottom">PEDÍ ONLINE <span>→</span></div></div></div><div class="phone phone-front"><div class="phone-notch"></div><div class="sample-screen sample-yellow"><div class="sample-status">9:41 <span>●●●</span></div><div class="sample-head"><span>☰</span><strong>CAMPO SUR</strong><span>◯</span></div><div class="sample-welcome">Hola, Sofía 👋<small>¿Qué vas a cocinar hoy?</small></div><div class="sample-search">⌕ &nbsp; Buscar tus cortes favoritos</div><div class="sample-category">PARA TU MESA <span>Ver todo →</span></div><div class="sample-product"><div class="product-emoji">🥩</div><div><b>Asado especial</b><small>Calidad seleccionada</small><strong>$ 12.900 / kg</strong></div><span class="sample-plus">+</span></div><div class="sample-product"><div class="product-emoji">🍖</div><div><b>Vacío premium</b><small>Ideal para la parrilla</small><strong>$ 14.500 / kg</strong></div><span class="sample-plus">+</span></div><div class="sample-tab">⌂ <span>♡</span><span>▣</span><span>◯</span></div></div></div><span class="phones-caption">ASÍ PODRÍA VERSE TU APP <span>↗</span></span></div></div></section>
+      <section class="demo-section section-wrap" id="demo" aria-labelledby="demo-title"><div class="section-kicker"><span>03 / MIRÁ LA EXPERIENCIA</span><span class="kicker-line"></span></div><div class="demo-grid"><div class="demo-copy"><h2 id="demo-title">DE LA IDEA<br /><span>A LA PANTALLA.</span></h2><p>Conocé cómo se siente tener una carnicería abierta en la mano de tus clientes.</p><a class="button button-red" href={whatsapp} target="_blank" rel="noopener noreferrer">Pedí una demo personalizada <span aria-hidden="true">↗</span></a></div><div class="demo-player"><div class="demo-phone"><div class="phone-notch"></div><video controls playsinline preload="metadata" poster="/concepto.webp" aria-label="Video de demostración de CarniApp"><source src="https://res.cloudinary.com/dkxj30sue/video/upload/f_auto,q_auto/v1766711365/demo_we8irq.mp4" type="video/mp4" /><track kind="captions" src="/captions.vtt" srclang="es" label="Español" default />Tu navegador no puede reproducir el video.</video></div><div class="demo-sticker">DALE<br />PLAY <span>↗</span></div></div></div></section>
+      <section class="business-section" id="como-funciona" aria-labelledby="business-title"><div class="section-wrap"><div class="business-head"><div><div class="section-kicker">04 / HECHA PARA CRECER</div><h2 id="business-title">VOS HACÉS<br />LO QUE MEJOR<br /><span>SABÉS HACER.</span></h2></div><p>Nosotros ponemos la tecnología para que cada corte encuentre más clientes.</p></div><div class="business-grid"><div class="business-photo"><img src="/carnicero-app.png" alt="Carnicero feliz al entregar un pedido de su negocio" loading="lazy" /></div><div class="business-list"><div><span>01 /</span><h3>Nos contás cómo es tu negocio.</h3><p>Tu marca, productos, precios, zonas de entrega y forma de vender.</p></div><div><span>02 /</span><h3>Armamos tu experiencia digital.</h3><p>Personalizamos la app y el catálogo para tus clientes.</p></div><div><span>03 /</span><h3>Empezás a vender y fidelizar.</h3><p>Recibís pedidos, gestionás entregas y mantenés tu marca presente.</p></div></div></div></div></section>
+      <section class="faq-section section-wrap" id="faq" aria-labelledby="faq-title"><div><div class="section-kicker">PREGUNTAS FRECUENTES</div><h2 id="faq-title">¿TE QUEDARON<br /><span>DUDAS?</span></h2><p>Conversemos sobre lo que tu negocio necesita.</p><a class="inline-link" href={whatsapp} target="_blank" rel="noopener noreferrer">Escribinos por WhatsApp ↗</a></div><div class="faq-list">{faqs.map((f) => <details><summary>{f.q}<span aria-hidden="true">+</span></summary><p>{f.a}</p></details>)}</div></section>
+      <section class="final-cta"><div class="section-wrap final-inner"><span>EL FUTURO DE TU NEGOCIO EMPIEZA ACÁ</span><h2>QUE TU CARNICERÍA<br /><em>ESTÉ EN TODAS PARTES.</em></h2><a class="button button-dark" href={whatsapp} target="_blank" rel="noopener noreferrer">Quiero hablar de mi app <span aria-hidden="true">↗</span></a><div class="final-star" aria-hidden="true">✳</div></div></section>
+    </main>
+    <footer class="site-footer"><div class="footer-main"><div><a class="brand footer-brand" href="/"><img src="/logo.png" alt="CarniApp" width="48" height="48" /><span>CarniApp</span></a><p>Tu carnicería, en cada bolsillo.</p><a href="mailto:admin@carniapp.com">admin@carniapp.com</a></div><div class="footer-links"><div><strong>EXPLORÁ</strong><a href="#beneficios">Beneficios</a><a href="#app">La app</a><a href="/pricing/">Planes</a><a href="/blog/">Blog</a></div><div><strong>SEGUINOS</strong><a href="https://www.instagram.com/carniapp/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.facebook.com/profile.php?id=61585867845622" target="_blank" rel="noopener noreferrer">Facebook ↗</a><a href="https://www.tiktok.com/@carniapp" target="_blank" rel="noopener noreferrer">TikTok ↗</a></div></div></div><div class="footer-bottom"><span>© {new Date().getFullYear()} CarniApp</span><div><a href="/privacidad">Privacidad</a><a href="/terminos">Términos y condiciones</a></div><span>HECHO PARA CRECER ↗</span></div></footer>
+  </div>
+  <script>
+    const menuButton = document.querySelector<HTMLButtonElement>('.menu-button');
+    const mobileMenu = document.querySelector<HTMLElement>('.mobile-nav');
+    menuButton?.addEventListener('click', () => {
+      const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!expanded));
+      if (mobileMenu) mobileMenu.hidden = expanded;
+    });
+    mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      if (mobileMenu) mobileMenu.hidden = true;
+      menuButton?.setAttribute('aria-expanded', 'false');
+    }));
+  </script>
 </Layout>
